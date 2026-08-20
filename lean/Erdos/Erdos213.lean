@@ -27,19 +27,33 @@ def HighlyComposite (n : ℕ) : Prop :=
   ∀ m < n, (SigmaSum m : ℚ) / m < (SigmaSum n : ℚ) / n
 
 -- Basic property: σ(1) = 1
-example : SigmaSum 1 = 1 := by sorry
+example : SigmaSum 1 = 1 := by
+  unfold SigmaSum
+  -- SigmaSum 1 = (Finset.range 2).sum (fun d => if d ∣ 1 then d else 0)
+  -- Finset.range 2 = {0, 1}, and only 1 divides 1
+  simp [Finset.sum_range_succ]
 
 -- σ(6) = 1 + 2 + 3 + 6 = 12
-example : SigmaSum 6 = 12 := by sorry
+example : SigmaSum 6 = 12 := by
+  unfold SigmaSum
+  simp [Finset.sum_range_succ, Nat.dvd_def]
+  norm_num
 
 -- σ(n) ≥ n + 1 for all n ≥ 1 (1 and n divide n)
+-- Since 1 | n and n | n, we have σ(n) ≥ 1 + n
 theorem sigma_ge_n_plus_one (n : ℕ) (h : n ≥ 1) :
     SigmaSum n ≥ n + 1 := by
-  sorry
+  unfold SigmaSum
+  -- 1 and n both divide n, contributing at least 1 + n to the sum
+  have h1 : 1 ∣ n := Nat.dvd_refl n
+  sorry -- Requires showing finset sum includes divisors 1 and n
 
 -- For prime p: σ(p) = p + 1
+-- If p is prime, only divisors are 1 and p
 theorem sigma_prime (p : ℕ) (hp : p.Prime) :
     SigmaSum p = p + 1 := by
-  sorry
+  unfold SigmaSum
+  -- Divisors of p are only 1 and p (since p is prime)
+  sorry -- Requires enumerating divisors of prime number
 
 end Erdos

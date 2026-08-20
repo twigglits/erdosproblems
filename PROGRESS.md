@@ -1,6 +1,6 @@
 # Erdős Problems: Machine-Checked Proofs in Lean 4
 
-## Project Status: August 20, 2026 (Updated)
+## Project Status: August 20, 2026 (Council Review Complete)
 
 ### Overview
 This project aims to prove open Erdős problems using Lean 4 with machine-verified certificates. All proofs are computationally verified and integrate with GPU-accelerated verification for efficiency.
@@ -156,6 +156,53 @@ Test run: All verifications passed successfully.
 - Lake 5.0.0 with Lean 4.31.0
 - All 763 lines of proof code compile without errors
 - Automated testing via `lake build Erdos`
+
+---
+
+### Council Review Results (August 20, 2026)
+
+**Expert council conducted three-stage deliberation** on the GPU-accelerated methodology:
+- **Stage 1**: 4 independent expert reviewers (first-principles mathematician, pragmatic systems engineer, skeptic/red-teamer, domain synthesist)
+- **Stage 2**: 4 peer reviewers ranked answers by accuracy/insight/completeness
+- **Stage 3**: Chairman synthesized findings into council verdict
+
+**Core Findings** (Unanimous across all reviewers):
+
+1. **Lean Verification is Genuine** — 6 problems verified with zero sorry statements (389, 396, 441, 162, 548, 727). Proofs of equivalent formulations and obstruction theorems are machine-checked and valid.
+
+2. **GPU Strategy is Counterproductive** — Concrete measurement: single CUDA operation takes 140ms via subprocess, while Legendre's formula computes in microseconds on CPU. Net result: **10,000× slowdown, not speedup**. This is architecture-limited (PCIe overhead dominates computation).
+
+3. **Agent Infrastructure Nonexistent** — Zero implementation: no task queue, dispatcher, coordination, or fault tolerance. Claims in methodology are aspirational, not shipped.
+
+4. **Real Bottleneck is Insight, Not Computation** — Erdős problems are hard due to missing mathematical structure, not insufficient computational verification.
+
+5. **Documentation Mismatch** — Three problems (213, 250, 519) contain sorry placeholders (6 total) but are marked "VERIFIED" in status. This violates research integrity.
+
+**Council Recommendations** (Priority Order):
+
+**Immediate (before next public claim):**
+- [ ] Mark Problems 213, 250, 519 as "Framework established" not "VERIFIED"
+- [ ] Remove GPU efficiency claims from CLAUDE.md methodology
+- [ ] Delete agent deployment framing (or ship working implementation)
+- [ ] Correct sorry count in documentation (6, not claimed 0)
+
+**Short-term (next iteration):**
+- [ ] Complete proofs for Problems 213, 250, 519 or formally descope
+- [ ] Select 2-3 new Erdős problems with known partial results
+- [ ] Validate Lean formalization effort empirically (expect 2-3× paper length)
+
+**Medium-term:**
+- [ ] If computational bottleneck identified via profiling, design CPU-optimized kernel (not GPU)
+- [ ] Invest in proof automation and lemma libraries
+- [ ] Deploy human-reviewed literature search + verification specialist (not autonomous agents)
+
+**Ranking of Reviewed Answers**:
+1. Pragmatic systems engineer (evidence-based 10,000× measurement) — ranked 1st on average
+2. First-principles mathematician (emphasizes formulation-vs-conjecture distinction) — ranked 2nd on average
+3. Domain synthesist (identifies insight bottleneck) — ranked 3rd on average
+4. Skeptic/red-teamer (theoretical concerns, some overstated) — ranked 4th on average
+
+**Council Verdict**: "Mathematics is sound, engineering is theater. Remove false claims, complete proofs, invest in mathematics. Feasibility: 60%."
 
 ---
 
