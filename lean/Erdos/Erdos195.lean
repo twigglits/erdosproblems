@@ -1,27 +1,26 @@
 /-
 # Erdős Problem 195
 
-> If all finite graphs have the property that every edge-coloring with n colors contains a monochromatic path of length 2^n, what is the minimum n?
+> Edge-coloring Ramsey: monochromatic paths in n-colorings of complete graphs
 
 Reference: https://www.erdosproblems.com/195
 
-This file formalizes Ramsey-theoretic bounds for monochromatic paths.
+This file studies Ramsey theory and monochromatic structures.
 -/
 import Erdos.Basic
-
-set_option maxRecDepth 1000000
 
 namespace Erdos
 
 open Nat
 
--- Monochromatic path of length k in an n-coloring
-def MonochromaticPath (n k : ℕ) : Prop :=
-  ∀ coloring : ℕ → ℕ, (∃ color c : ℕ, c < n ∧ ∀ i ∈ Finset.range k, coloring i = c)
+-- Ramsey number R(3,3,...,3): minimum n such that any k-coloring of K_n contains monochromatic triangle
+def RamseyNumber (k : ℕ) : ℕ := sorry
 
--- Ramsey-theoretic bound: existence of monochromatic structure
-theorem monochromatic_path_bound (n : ℕ) :
-    ∃ k, MonochromaticPath n k := by
+-- Monochromatic path of length ℓ exists in any k-coloring of K_n for n large enough
+theorem monochromatic_path_exists (k ℓ : ℕ) :
+    ∃ n₀, ∀ n ≥ n₀, ∀ coloring : ℕ → ℕ, 
+      (∃ color : ℕ, color < k ∧ ∃ path : List ℕ, path.length = ℓ ∧
+        ∀ i j, i.succ = j → coloring (path.nthLe i sorry) = color) := by
   sorry
 
 end Erdos

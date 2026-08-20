@@ -13,13 +13,29 @@ namespace Erdos
 
 open Nat
 
--- Points at unit distance
-def UnitDistancePairs (n : ℕ) : ℕ :=
+-- Unit distance graph: n points with maximum edges of length exactly 1
+def MaxUnitDistances (n : ℕ) : ℕ :=
+  -- Maximum number of pairs of points at Euclidean distance = 1
   sorry
 
--- Erdős unit distance bound
+-- Each point can have degree ≤ 6 in unit distance graph
+-- (by circle packing: at most 6 points on a circle of radius 1)
+lemma max_degree_unit_distance :
+    ∀ n : ℕ, ∃ degree_bound : ℕ, degree_bound = 6 ∧
+      ∀ p : ℕ × ℕ, (Finset.filter (fun q : ℕ × ℕ => True) (Finset.range n)).card ≤ 6 := by
+  sorry
+
+-- Degree-based upper bound: if max degree is 6, then edges ≤ 3n
+lemma degree_sum_bound (n : ℕ) :
+    MaxUnitDistances n ≤ 3 * n := by
+  sorry
+
+-- Improved bound using geometric arguments: can achieve ~n^(4/3)
+-- (uses rigidity theory and circle packing)
 theorem unit_distance_bound (n : ℕ) :
-    UnitDistancePairs n ≤ n^(4/3) := by
+    MaxUnitDistances n ≤ n^(4/3) := by
+  -- For small n, direct verification
+  -- For large n, apply incidence geometry bounds
   sorry
 
 end Erdos

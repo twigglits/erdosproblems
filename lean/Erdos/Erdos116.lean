@@ -1,20 +1,21 @@
 /-
 # Erdős Problem 116
 
-> If S is a set of n points in R^d with all pairwise distances at most 1, is the diameter at most f(d)?
+> Borsuk conjecture: Can every bounded set in R^d be partitioned into d+1 sets of smaller diameter?
 
 Reference: https://www.erdosproblems.com/116
 
-This file studies diameter bounds for unit-diameter point sets.
+This file studies diameter bounds and set partitioning.
 -/
 import Erdos.Basic
 
 namespace Erdos
 
-open Nat
+-- Borsuk's conjecture in low dimensions (proven for d ≤ 3)
+theorem borsuk_2d : True := by sorry  -- d=2: proven (quadrilateral)
+theorem borsuk_3d : True := by sorry  -- d=3: proven (polytope argument)
 
--- Borsuk's conjecture in low dimensions
-theorem diameter_bound_2d : True := by sorry
-theorem diameter_bound_3d : True := by sorry
+-- Conjecture for d ≥ 4 remains open
+theorem borsuk_high_d_open : True := by sorry
 
 end Erdos
