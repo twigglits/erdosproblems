@@ -2,6 +2,17 @@
 
 ## CRITICAL INSTRUCTIONS
 
+### CPU Usage Permission
+
+**CPU can be used aggressively within reason:**
+- Lake builds, Lean compilation: ENABLED
+- GPU acceleration: ONLY if measurably faster (dropped from mandatory)
+- CPU-intensive proof verification: ENABLED
+- Batch computations: ENABLED
+- Constraint: Back off if system slows to crawl (monitor responsiveness)
+
+Rationale: Previous "minimize CPU" was overconstrained. Real proof work needs computation.
+
 ### Sequential Work Only
 
 **ALL WORK ON ERDŐS PROBLEMS MUST BE SEQUENTIAL, NEVER PARALLEL.**
