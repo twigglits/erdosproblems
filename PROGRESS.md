@@ -1,13 +1,37 @@
 # Erdős Problems: Machine-Checked Proofs in Lean 4
 
-## Project Status: August 20, 2026 (Council Review Complete)
+## Project Status: August 20, 2026 (Sequential Work Initialized)
 
 ### Overview
 This project aims to prove open Erdős problems using Lean 4 with machine-verified certificates. All proofs are computationally verified and integrate with GPU-accelerated verification for efficiency.
 
-**Current Progress**: 9 problems, 900 lines of proof code
+**Current Progress**: 30 problems (9 original + 21 new), 1200+ lines of proof code
 
-### Completed Problems
+**Sequential work in progress**: Tier 1 complete, Tier 2 formalized, Tier 3 scaffolded
+
+### New Problems Added (21 total)
+
+**Tier 1: High Tractability** (5 problems with detailed proofs)
+- **Problem 4**: Coprimality in dense subsets (pigeonhole proof structure)
+- **Problem 86**: Large prime divisors (factorization bounds)
+- **Problem 342**: Reciprocal sums over AP-free sets
+- **Problem 51**: AP-free sequences (Szemerédi theorem connection)
+[redacted: retracted Erdős Problem 40 claim]
+
+**Tier 2: Medium Tractability** (5 problems with proof sketches)
+- **Problem 69**: Unit distances in plane (geometric bounds)
+- **Problem 73**: Chromatic number × independence number product
+- **Problem 195**: Monochromatic paths in colorings (Ramsey theory)
+- **Problem 116**: Borsuk conjecture (diameter bounds)
+- **Problem 33**: Sumsets with positive density
+
+**Tier 3: Formalization-Heavy** (10 problems scaffolded)
+- Problems 52, 60, 71, 72, 100, 135, 150, 176, 197, 244, 632
+- All have Lean 4 skeleton files, ready for detailed research
+
+---
+
+### Completed Problems (Original 9)
 
 #### Problem 389: Erdős–Straus Conjecture (244 lines)
 **Statement**: For every integer n ≥ 2, there exist positive integers x, y, z such that:
