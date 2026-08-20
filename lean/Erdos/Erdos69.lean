@@ -26,8 +26,16 @@ lemma max_degree_unit_distance :
   sorry
 
 -- Degree-based upper bound: if max degree is 6, then edges ≤ 3n
+-- Proof: Sum of degrees = 2 * (number of edges)
+--        If each vertex has degree ≤ 6, then sum ≤ 6n
+--        So 2 * edges ≤ 6n, hence edges ≤ 3n
 lemma degree_sum_bound (n : ℕ) :
     MaxUnitDistances n ≤ 3 * n := by
+  -- MaxUnitDistances n = number of unit distance pairs
+  -- Each point has degree ≤ 6 (circle packing)
+  -- Handshaking lemma: sum of degrees = 2 * edges
+  -- Therefore: 2 * MaxUnitDistances n ≤ 6 * n
+  -- Simplify: MaxUnitDistances n ≤ 3 * n
   sorry
 
 -- Improved bound using geometric arguments: can achieve ~n^(4/3)

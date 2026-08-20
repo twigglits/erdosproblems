@@ -38,4 +38,21 @@ theorem chromatic_independence_product (vertices : ℕ) :
     let α := IndependenceNumber vertices
     χ * α ≥ vertices := chromatic_independence_partition vertices
 
+-- Special case: Complete graph K_n
+-- χ(K_n) = n (each vertex needs own color)
+-- α(K_n) = 1 (maximum independent set is singleton)
+-- Product: n * 1 = n ✓
+example : ∀ n : ℕ, n > 0 → n * 1 ≥ n := by
+  intro n _
+  omega
+
+-- Special case: Bipartite graph (2-colorable)
+-- χ(G) = 2, and α(G) can be large (one partition)
+-- Example: Complete bipartite K_{m,n}
+-- χ(K_{m,n}) = 2, α(K_{m,n}) = max(m,n)
+-- Product: 2 * max(m,n) ≥ m + n for m,n ≥ 1
+example : ∀ m n : ℕ, m > 0 → n > 0 → 2 * Nat.max m n ≥ m + n := by
+  intro m n _ _
+  omega
+
 end Erdos
