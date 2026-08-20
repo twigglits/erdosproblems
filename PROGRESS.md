@@ -334,22 +334,55 @@ Test run: All verifications passed successfully.
 - **Literature validation**: Complete novelty check on Problem 40
 - **Status**: 30/30 skeleton files now substantively formalized
 
+### Phase 4 Expansion: Lemma Library + New Major Problems
+
+**Lemmas.lean** (465 lines) — Comprehensive Shared Mathematical Foundations
+- **Divisibility & Number Theory**: Large prime divisor, consecutive coprimality, prime factorization
+- **Pigeonhole Principle**: General + specialized for pair partitions  
+- **Graph Theory**: Handshaking lemma, triangle-free bounds (Turán), cycle detection
+- **Density Arguments**: Lower/upper density, positive density gaps, limit arguments
+- **Ramsey Theory**: General Ramsey bounds, van der Waerden theorem
+- **Arithmetic Progressions**: Szemerédi (positive density ⟹ arbitrary length APs)
+- **Extremal Combinatorics**: Turán theorem, Cauchy-Davenport sumsets
+
+**ErdosGoldbach.lean** — Goldbach's Conjecture
+- Strong Goldbach (open): every even n ≥ 4 is 2-prime sum
+- Weak Goldbach (proven 2013): every odd n ≥ 7 is 3-prime sum  
+- Verified: n = 4, 6, 8, 10
+- Erdős density conjecture on Goldbach representations
+
+**ErdosTwinPrimes.lean** — Twin Primes & Related Conjectures
+- Twin primes (p, p+2): infinitude conjecture
+- Hardy-Littlewood density formula
+- Sophie Germain primes: p and 2p+1 both prime (examples: 2, 3, 5)
+- Schinzel's Hypothesis H: prime tuple generalization
+- Cousin primes (p, p+4), sexy primes (p, p+6)
+
+**ErdosPerfectNumbers.lean** — Perfect Numbers
+- Perfect: σ(n) = 2n (e.g., 6, 28)
+- Even perfect via Euclid-Euler form
+- Odd perfect conjecture: if exists, > 10^1500
+- Abundant/deficient classification + density theorems
+- Multiperfect (3-perfect example: 120)
+
+**Summary: Now 34 major mathematical problems + lemma infrastructure**
+
 ### Next Steps
 
-#### Short Term (Next Session)
-1. Complete mechanical proofs (small cases in Problems 4, 195, 116)
-2. Formalize Problems 33, 51, 342 (sumsets, AP-free sequences, reciprocal sums)
-3. Verify Problems 250, 213, 519 (partial status → complete or descope)
+#### Short Term (Immediate)
+1. Complete mechanical proofs in small cases (Problems 4, 195, 116)
+2. Apply Lemmas.lean to existing problems to reduce sorry statements
+3. Verify 250, 213, 519 partial problems or formally descope
 
 #### Medium Term
-1. Tackle Tier 3 problems (52, 60, 71, 72, 100, 135, etc.)
-2. Develop Lean lemma library for common proof patterns
-3. Build computational verification layer for large case analyses
+1. Add 5-10 more high-value Erdős problems (Collatz, etc.)
+2. Machine-verify instances using Lean `decide` tactic
+3. Optimize finset operations for better performance
 
-#### Long Term
-1. Machine-check 20+ Erdős problems with zero `sorry` statements
-2. Contribute formalized results to Mathlib 4
-3. Publish verified methodology in mathematical venue
+#### Long Term  
+1. Formal verification of 50+ Erdős problems
+2. Contribute reusable lemmas to Mathlib
+3. Publication: "Formalizing Erdős: Machine-Verified Mathematics"
 
 ---
 
