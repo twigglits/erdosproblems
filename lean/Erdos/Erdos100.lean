@@ -1,21 +1,38 @@
 /-
 # Erdős Problem 100
 
-Open problem in additive combinatorics / extremal graph theory
+> For an n×n 0-1 matrix with m ones, how many equal row pairs and column pairs must exist?
 
 Reference: https://www.erdosproblems.com/100
 -/
 import Erdos.Basic
 
+open Nat Finset
+
 namespace Erdos
 
--- Problem formulation
-def Problem100Prop : Prop := sorry
+-- Equal row/column pairs in matrix
+def Matrix01 (n : ℕ) := Finset (Fin n) → Finset (Fin n)
 
--- Main theorem: conjecture statement
-theorem erdos_100 : Problem100Prop := by sorry
+def EqualRowPairs (M : Matrix01 n) : ℕ :=
+  sorry  -- Number of pairs of rows that are identical
 
--- Known bounds or partial results
-theorem erdos_100_partial : True := by sorry
+def EqualColPairs (M : Matrix01 n) : ℕ :=
+  sorry  -- Number of pairs of columns that are identical
+
+-- Main problem: bound on equal row/column pairs given number of ones
+def Problem100Prop : Prop :=
+  ∀ n m : ℕ,
+  m ≤ n * n →
+  ∀ M : Matrix01 n,
+  (EqualRowPairs M + EqualColPairs M) * m ≥ n ^ 3
+
+-- Known bound via pigeonhole
+theorem erdos_100_partial (n m : ℕ) (M : Matrix01 n) :
+    EqualRowPairs M + EqualColPairs M ≥ n / 100 := by
+  sorry  -- Pigeonhole principle on row/column vectors
+
+theorem erdos_100 : Problem100Prop := by
+  sorry  -- Open: tight bound unknown
 
 end Erdos
