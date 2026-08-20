@@ -1,0 +1,101 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["ef8d00e39b7f58b7.olean"],
+  "m": false,
+  "i": "8597470c35a8d821.ilean",
+  "c": "77a1381b0da43ab4.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Cli/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/batteries/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Qq/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/aesop/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/importGraph/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/plausible/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/mathlib/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean /home/jeannaude/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/jeannaude/Documents/erdosproblems/lean/Erdos/Audit.lean -o /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Audit.olean -i /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Audit.ilean -c /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Audit.c --setup /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Audit.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "Erdos/Audit.lean:13:0: 'Erdos.erdosStraus_iff_prod' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:14:0: 'Erdos.erdosStraus_iff_choose' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:15:0: 'Erdos.erdosStraus_iff_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:16:0: 'Erdos.erdosStraus_iff_digits' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:17:0: 'Erdos.local_condition_iff' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:18:0: 'Erdos.two_mul_mod_ge_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:19:0: 'Erdos.not_dvd_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:20:0: 'Erdos.smooth_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:21:0: 'Erdos.Solutions.n1' depends on axioms: [propext]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:22:0: 'Erdos.Solutions.n11' depends on axioms: [propext]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:25:0: 'Erdos.factorization_centralBinom_of_lt_sq' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:26:0: 'Erdos.le_two_mul_of_block396' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:27:0: 'Erdos.smooth_of_block396' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:30:0: 'Erdos.le_of_egrs' depends on axioms: [propext, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:31:0: 'Erdos.egrs_iff_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:32:0: 'Erdos.k_le_mod_of_egrs' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:33:0: 'Erdos.not_dvd_of_egrs' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:34:0: 'Erdos.sq_le_of_dvd_block' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:35:0: 'Erdos.Solutions.k2' depends on axioms: [propext]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:36:0: 'Erdos.Solutions.k4' depends on axioms: [propext]",
+   "level": "info"}],
+ "inputs":
+ [["Erdos.Audit:deps",
+   [["deps",
+     [["erdos/Erdos:extraDep", [["@erdos:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["Erdos.Erdos389 transitive imports (legacy)", "a7c3d2df7ba4971a"],
+        ["Erdos.Erdos389:importAllArts", "9e2c2bd21bad5a29"],
+        ["Erdos.Erdos396 transitive imports (legacy)", "a7c3d2df7ba4971a"],
+        ["Erdos.Erdos396:importAllArts", "175d08110ed66006"],
+        ["Erdos.Erdos727 transitive imports (legacy)", "a7c3d2df7ba4971a"],
+        ["Erdos.Erdos727:importAllArts", "49c58c1916a9fa3f"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
+   "fc45ac412f28501c"],
+  ["/home/jeannaude/Documents/erdosproblems/lean/Erdos/Audit.lean",
+   "38d266e103e6b91f"],
+  ["options",
+   [["-DmaxSynthPendingDepth=3", "c78e353d34de85d4"],
+    ["-Dweak.linter.mathlibStandardSet=false", "28605bbdbbe35f32"],
+    ["-DrelaxedAutoImplicit=false", "74a2b5546b55be80"],
+    ["-Dpp.unicode.fun=true", "9b94070140457fab"]]],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Erdos.Audit", "418d5ae0bfac2fe2"],
+  ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "3d989f9e131ffa11"}
