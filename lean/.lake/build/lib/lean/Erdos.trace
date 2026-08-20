@@ -1,10 +1,10 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["217f2d13e6565282.olean"],
+ {"o": ["1ef18a4047343bd4.olean"],
   "m": false,
-  "i": "ac2e26e5d99710dd.ilean",
-  "c": "60a309d0aa118063.c"},
+  "i": "2b189278d09f516e.ilean",
+  "c": "96896942e82c3899.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Cli/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/batteries/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Qq/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/aesop/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/importGraph/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/plausible/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/mathlib/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean /home/jeannaude/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/jeannaude/Documents/erdosproblems/lean/Erdos.lean -o /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos.olean -i /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos.ilean -c /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos.c --setup /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos.setup.json --json",
@@ -18,6 +18,8 @@
         ["Erdos.Basic:importAllArts", "9501a457de8fd65b"],
         ["Erdos.Erdos162 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos162:importAllArts", "f59dc7da24fa57fd"],
+        ["Erdos.Erdos213 transitive imports (legacy)", "a7c3d2df7ba4971a"],
+        ["Erdos.Erdos213:importAllArts", "8a02205573ecda1c"],
         ["Erdos.Erdos250 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos250:importAllArts", "d1196df1e6f933c1"],
         ["Erdos.Erdos389 transitive imports (legacy)", "a7c3d2df7ba4971a"],
@@ -26,6 +28,10 @@
         ["Erdos.Erdos396:importAllArts", "175d08110ed66006"],
         ["Erdos.Erdos441 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos441:importAllArts", "6fb7c124cefcdcda"],
+        ["Erdos.Erdos519 transitive imports (legacy)", "a7c3d2df7ba4971a"],
+        ["Erdos.Erdos519:importAllArts", "580c89327b25f4f1"],
+        ["Erdos.Erdos548 transitive imports (legacy)", "a7c3d2df7ba4971a"],
+        ["Erdos.Erdos548:importAllArts", "448e41495238f6b9"],
         ["Erdos.Erdos727 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos727:importAllArts", "49c58c1916a9fa3f"],
         ["Erdos.Audit transitive imports (legacy)", "63cb16337941c2a2"],
@@ -38,7 +44,7 @@
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
   ["/home/jeannaude/Documents/erdosproblems/lean/Erdos.lean",
-   "9bb89524d5e18863"],
+   "68e7a425b5314c52"],
   ["options",
    [["-DmaxSynthPendingDepth=3", "c78e353d34de85d4"],
     ["-Dweak.linter.mathlibStandardSet=false", "28605bbdbbe35f32"],
@@ -48,4 +54,4 @@
   ["Module.name: Erdos", "8af4516da5eca5f8"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "877ce9aea06e49ed"}
+ "depHash": "88b7f0518dc82263"}
