@@ -13,7 +13,7 @@ namespace Erdos
 
 -- Sum-free set: no a,b,c in A with a+b=c
 def SumFree (A : Set ℕ) : Prop :=
-  ∀ a b ∈ A, a + b ∉ A
+  ∀ a ∈ A, ∀ b ∈ A, a + b ∉ A
 
 -- Maximum size of sum-free set in [1,n]
 def MaxSumFreeSize (n : ℕ) : ℕ :=

@@ -26,7 +26,11 @@ theorem erdos_72_upper (N : ℕ) :
   sorry  -- Density bounds (best known 2023)
 
 -- Main problem: close the gap between bounds
+-- `Ω(...)` is asymptotic notation, not Lean syntax, and `=` is the wrong relation for it.
+-- "f is Ω(g)" unfolds to: some positive constant `c` and threshold `N₀` exist with
+-- `f N ≥ c * g N` for every `N ≥ N₀`. `MaxAPFreeLength` is ℕ-valued, so it is cast to ℝ.
 def Problem72Prop : Prop :=
-  ∃ α > 0, ∀ N : ℕ, MaxAPFreeLength N = Ω(N / (Real.log N) ^ α)
+  ∃ α > 0, ∃ c > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀,
+    (MaxAPFreeLength N : ℝ) ≥ c * ((N : ℝ) / (Real.log N) ^ α)
 
 end Erdos

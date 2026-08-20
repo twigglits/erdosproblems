@@ -21,12 +21,11 @@ def DenseSubset (n : ℕ) (A : Finset ℕ) : Prop :=
 
 -- A contains coprime pair
 def HasCoprimePair (A : Finset ℕ) : Prop :=
-  ∃ a b ∈ A, a ≠ b ∧ Nat.gcd a b = 1
+  ∃ a ∈ A, ∃ b ∈ A, a ≠ b ∧ Nat.gcd a b = 1
 
 -- Key lemma: consecutive integers are coprime
 lemma consecutive_coprime (k : ℕ) : Nat.gcd k (k + 1) = 1 := by
-  rw [Nat.gcd_comm]
-  exact Nat.gcd_eq_one_iff_coprime.mpr (Nat.coprime_succ_self k)
+  simpa using Nat.coprime_succ_self_right (n := k)
 
 -- Pigeonhole principle: n+1 elements from {1..2n} must contain consecutive integers
 -- Proof strategy: Partition {1..2n} into n pairs {1,2}, {3,4}, ..., {2n-1,2n}
@@ -48,7 +47,6 @@ lemma dense_contains_consecutive_small (n : ℕ) (A : Finset ℕ) (h : DenseSubs
   · left; rfl
   -- n=1: A ⊆ {1,2} with |A|=2, must be {1,2}
   · right
-    obtain ⟨hcard, hrange⟩ := h
     -- A has exactly 2 elements, all in [1,2]
     -- The only 2-element subset of {1,2} is {1,2} itself
     have h_card_two : A.card = 2 := by simp [DenseSubset] at h; exact h.1
@@ -56,38 +54,20 @@ lemma dense_contains_consecutive_small (n : ℕ) (A : Finset ℕ) (h : DenseSubs
       intro a ha
       simp [DenseSubset] at h
       exact h.2 a ha
-    -- Need both 1 and 2 in A (only way to have 2 distinct elements in {1,2})
-    have h1 : 1 ∈ A := by
-      by_contra h1_not
-      -- If 1 ∉ A, then A ⊆ {2}, so |A| ≤ 1, contradicting |A|=2
-      have : A ⊆ {2} := by
-        intro a ha
-        have := h_range a ha
-        by_contra h_ne_1
-        simp at h_ne_1
-        have : a = 2 := by omega
-        simp [this]
-      have : A.card ≤ 1 := Finset.card_le_one.mpr (fun a b ha hb => by
-        simp [Finset.subset_singleton_iff_singleton] at this
-        sorry)
+    -- A ⊆ {1,2} and |A| = 2 = |{1,2}|, so A = {1,2}. No case analysis is needed.
+    have h_sub : A ⊆ ({1, 2} : Finset ℕ) := by
+      intro a ha
+      have := h_range a ha
+      simp
       omega
-    have h2 : 2 ∈ A := by
-      by_contra h2_not
-      -- If 2 ∉ A, then A ⊆ {1}, so |A| ≤ 1, contradicting |A|=2
-      have : A ⊆ {1} := by
-        intro a ha
-        have := h_range a ha
-        by_contra h_ne_2
-        simp at h_ne_2
-        have : a = 1 := by omega
-        simp [this]
-      sorry  -- Similar contradiction
+    have h_eq : A = ({1, 2} : Finset ℕ) :=
+      Finset.eq_of_subset_of_card_le h_sub (by simp [h_card_two])
     use 1
-    exact ⟨h1, h2⟩
+    rw [h_eq]
+    simp
   -- n=2: A ⊆ {1,2,3,4} with |A|=3
   -- Pigeonhole: partition into pairs {1,2}, {3,4}; 3 elements must complete one pair
   · right
-    obtain ⟨hcard, hrange⟩ := h
     have h_card_three : A.card = 3 := by simp [DenseSubset] at h; exact h.1
     -- Partition logic: 3 elements from 4, partition into 2 pairs
     -- At least one pair must be complete
@@ -138,8 +118,7 @@ theorem dense_subset_has_coprime_pair (n : ℕ) (A : Finset ℕ) (h : DenseSubse
     -- n > 0: found consecutive k and k+1
     right
     obtain ⟨k, hk, hk1⟩ := h_consecutive
-    use k, k + 1, hk, hk1
-    refine ⟨Nat.succ_ne_self k, consecutive_coprime k⟩
+    exact ⟨k, hk, k + 1, hk1, by omega, consecutive_coprime k⟩
 
 -- Simplified version: for n ≥ 1, always has coprime pair
 theorem dense_subset_has_coprime_pair_pos (n : ℕ) (A : Finset ℕ) (h : DenseSubset n A) (hn : n > 0) :
@@ -152,8 +131,7 @@ theorem dense_subset_has_coprime_pair_pos (n : ℕ) (A : Finset ℕ) (h : DenseS
   | inr h_consecutive =>
     -- Found consecutive k and k+1
     obtain ⟨k, hk, hk1⟩ := h_consecutive
-    use k, k + 1, hk, hk1
-    exact ⟨Nat.succ_ne_self k, consecutive_coprime k⟩
+    exact ⟨k, hk, k + 1, hk1, by omega, consecutive_coprime k⟩
 
 -- ============================================================================
 -- VERIFICATION EXAMPLES
@@ -161,25 +139,21 @@ theorem dense_subset_has_coprime_pair_pos (n : ℕ) (A : Finset ℕ) (h : DenseS
 
 -- Example 1: n=1, A = {1,2}
 example : HasCoprimePair {1, 2} := by
-  use 1, 2
-  norm_num [HasCoprimePair]
+  exact ⟨1, by simp, 2, by simp, by omega, by norm_num⟩
 
 -- Example 2: n=2, A = {1,2,3}
 example : HasCoprimePair {1, 2, 3} := by
-  use 1, 2
-  norm_num [HasCoprimePair]
+  exact ⟨1, by simp, 2, by simp, by omega, by norm_num⟩
 
 -- Example 3: n=3, A = {1,2,3,4}
 example : HasCoprimePair {1, 2, 3, 4} := by
-  use 1, 2
-  norm_num [HasCoprimePair]
+  exact ⟨1, by simp, 2, by simp, by omega, by norm_num⟩
 
 -- Example 4: Arbitrary dense subset n=2
 example : DenseSubset 2 {2, 3, 4} := by
   simp [DenseSubset]
 
 example : HasCoprimePair {2, 3, 4} := by
-  use 2, 3
-  norm_num [HasCoprimePair]
+  exact ⟨2, by simp, 3, by simp, by omega, by norm_num⟩
 
 end Erdos

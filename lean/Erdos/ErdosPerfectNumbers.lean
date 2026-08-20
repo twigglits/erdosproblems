@@ -13,6 +13,10 @@ open Nat
 
 namespace Erdos
 
+-- Several statements below filter on Props (`Abundant`, `Deficient`, `Perfect`) that carry no
+-- `Decidable` instance. Classical decidability is opened once here rather than per theorem.
+open scoped Classical
+
 -- ============================================================================
 -- PERFECT NUMBERS
 -- ============================================================================
@@ -29,13 +33,11 @@ def EvenPerfect (n : ℕ) : Prop :=
   n = 2^(p - 1) * (2^p - 1)
 
 -- Known even perfect numbers (verified)
-example : Perfect 6 := by
-  simp [Perfect]
-  norm_num [Finset.sum_range_succ]
+-- `Perfect n` is a finite decidable computation, so `decide` discharges it outright.
+-- 6 = 1 + 2 + 3 and 28 = 1 + 2 + 4 + 7 + 14.
+example : Perfect 6 := by unfold Perfect; decide
 
-example : Perfect 28 := by
-  simp [Perfect]
-  sorry  -- Tedious calculation
+example : Perfect 28 := by unfold Perfect; decide
 
 -- Odd perfect numbers (open)
 -- If an odd perfect number exists, it satisfies multiple constraints
@@ -80,19 +82,25 @@ theorem prime_deficient (p : ℕ) (hp : p.Prime) :
 -- ============================================================================
 
 -- Abundant numbers have positive density (though small)
+-- Three corrections to the original statement:
+--   1. `Abundant n` is a `Prop` with no `Decidable` instance, so `Finset.filter` needed
+--      classical decidability.
+--   2. `.card / N` was ℕ division compared against a rational δ; the count is now cast to ℚ.
+--   3. The original claimed the ratio exceeds δ for EVERY `N`, which is false: at `N = 1`
+--      the count is 0, so the ratio is 0. A density claim needs "for all large `N`".
+open scoped Classical in
 theorem abundant_positive_density :
-    ∃ δ > 0,
-    ∀ N : ℕ,
-    (Finset.filter (fun n => n < N ∧ Abundant n) (Finset.range N)).card / N > δ := by
-  use 0.0001
-  sorry  -- Abundant numbers ~24% of naturals (empirical)
+    ∃ δ : ℚ, δ > 0 ∧ ∃ N₀ : ℕ, ∀ N ≥ N₀,
+    (((Finset.filter (fun n => n < N ∧ Abundant n) (Finset.range N)).card : ℚ) / N > δ) := by
+  sorry  -- Abundant numbers have natural density ≈ 0.2476
 
 -- Deficient numbers have density ~1
 theorem deficient_nearly_full_density :
     ∀ ε > 0,
     ∃ N : ℕ,
     ∀ n ≥ N,
-    (Finset.filter (fun m => m ≤ n ∧ Deficient m) (Finset.range (n + 1))).card / (n + 1) > 1 - ε := by
+    (((Finset.filter (fun m => m ≤ n ∧ Deficient m) (Finset.range (n + 1))).card : ℚ)
+      / (n + 1) > 1 - ε) := by
   sorry
 
 -- Odd abundant numbers exist (smallest is 945)
@@ -105,9 +113,14 @@ example : Abundant 945 := by
 -- ============================================================================
 
 -- Erdős: the set of odd perfect numbers has density 0 (or is empty)
+-- The original wrote `... .card / N → 0`, using implication `→` between a natural number
+-- and `0`, which is not a limit and does not typecheck. "Density tends to 0" is stated
+-- properly with `Filter.Tendsto` along `atTop`, over ℝ.
 theorem erdos_odd_perfect_density_zero :
-    (∀ N : ℕ,
-     (Finset.filter (fun n => n < N ∧ Perfect n ∧ Odd n) (Finset.range N)).card / N → 0)
+    Filter.Tendsto
+      (fun N : ℕ =>
+        (((Finset.filter (fun n => n < N ∧ Perfect n ∧ Odd n) (Finset.range N)).card : ℝ) / N))
+      Filter.atTop (nhds 0)
     ∨ (¬∃ n : ℕ, Perfect n ∧ Odd n) := by
   sorry  -- Open: even if odd perfect numbers exist, they're vanishingly rare
 

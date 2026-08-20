@@ -14,8 +14,10 @@ def UnitDistanceGraph (n : ℕ) : ℕ :=
   sorry  -- Maximum edges with distance exactly 1
 
 -- Upper bound: O(n^(4/3)) from incidence geometry
+-- A ℕ base with a ℚ exponent has no `HPow` instance. The bound is stated over ℝ,
+-- where `Real.rpow` gives the fractional power its meaning.
 theorem problem_52_upper_bound (n : ℕ) :
-    UnitDistanceGraph n ≤ 4 * n ^ (4 / 3 : ℚ) := by
+    (UnitDistanceGraph n : ℝ) ≤ 4 * (n : ℝ) ^ ((4 : ℝ) / 3) := by
   sorry  -- Spencer-Szemerédi-Trotter theorem
 
 -- Lower bound: Ω(n log log n) from constructions

@@ -70,10 +70,12 @@ def contains_cycle (n : ℕ) : Prop :=
   ∃ i j : ℕ, i < j ∧ collatz_sequence n i = collatz_sequence n j
 
 -- Known cycle: 1 → 1 (the trivial cycle)
+-- The indices 0 and 1 were wrong: `collatz_sequence 1 1 = 4`, not 1, so that pair asserted
+-- `1 = 4`. Starting from 1 the orbit is 1 → 4 → 2 → 1, so it first repeats at index 3.
 theorem trivial_cycle_one : contains_cycle 1 := by
-  use 0, 1
-  simp [collatz_sequence, collatz_step]
-  norm_num
+  use 0, 3
+  refine ⟨by norm_num, ?_⟩
+  decide
 
 -- Conjecture: 1 is the only cycle
 theorem collatz_unique_cycle :
@@ -114,7 +116,8 @@ def even_density (n : ℕ) (k : ℕ) : ℚ :=
   (Finset.filter (fun i => Even (collatz_sequence n i)) (Finset.range k)).card / k
 
 theorem even_density_convergence (n : ℕ) (h : reaches_one n) :
-    ∃ d : ℚ, d ≈ 0.6 ∧
+    -- `≈` is not Lean notation; "approximately 0.6" is written as an explicit bound.
+    ∃ d : ℚ, |d - 0.6| < 0.1 ∧
     ∀ ε > 0, ∃ k₀ : ℕ,
     ∀ k ≥ k₀, |even_density n k - d| < ε := by
   sorry  -- Empirically ~0.64 but unproven

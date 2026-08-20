@@ -40,7 +40,8 @@ def LargestPrimeDivisor (n : ℕ) : ℕ :=
 
 theorem large_prime_divisor_exists (n : ℕ) (h : n > 1) :
     HasLargePrimeDivisor n := by
-  obtain ⟨p, hp_prime, hp_div⟩ := Nat.exists_prime_and_dvd h
+  -- `Nat.exists_prime_and_dvd` wants `n ≠ 1`, not `n > 1`.
+  obtain ⟨p, hp_prime, hp_div⟩ := Nat.exists_prime_and_dvd (by omega : n ≠ 1)
   use p, hp_prime, hp_div
   -- Need to show p² > n
   -- If p² ≤ n, let m = n/p. Then m < p.
@@ -55,13 +56,15 @@ theorem large_prime_divisor_exists (n : ℕ) (h : n > 1) :
 theorem prime_large_divisor (p : ℕ) (hp : p.Prime) :
     HasLargePrimeDivisor p := by
   use p, hp, dvd_refl p
-  -- p² > p for p ≥ 2
-  have : p ≥ 2 := Nat.Prime.two_le hp
-  omega
+  -- p² > p for p ≥ 2. `omega` is linear-only, so it cannot handle `p ^ 2`.
+  have h2 : 2 ≤ p := hp.two_le
+  have hsq : p ^ 2 = p * p := sq p
+  nlinarith
 
 theorem prime_power_large_divisor (p k : ℕ) (hp : p.Prime) (hk : k > 0) :
     HasLargePrimeDivisor (p ^ k) := by
-  use p, hp, dvd_pow_self p hk
+  -- `dvd_pow_self` wants `k ≠ 0`, not `k > 0`.
+  use p, hp, dvd_pow_self p (by omega : k ≠ 0)
   -- p² > p^k iff p > k (for k=1, p ≥ 2)
   sorry
 
@@ -103,7 +106,7 @@ theorem infinitely_many_large_prime_divisors :
 -- For n > 1, at least one prime divisor exists
 theorem prime_divisor_property (n : ℕ) (h : n > 1) :
     ∃ p : ℕ, p.Prime ∧ p ∣ n := by
-  exact Nat.exists_prime_and_dvd h
+  exact Nat.exists_prime_and_dvd (by omega : n ≠ 1)
 
 -- Erdős-Kac theorem (partial): most integers have ~ log(log n) prime divisors
 -- Average largest prime divisor is ~ √n

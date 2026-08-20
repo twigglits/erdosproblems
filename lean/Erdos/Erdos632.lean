@@ -38,7 +38,8 @@ theorem regions_bound (n d : ℕ) (h : n > d) :
 def Problem632Prop : Prop :=
   ∀ n d : ℕ,
   RegionsFromHyperplanes n d = Finset.sum (Finset.range (d + 1))
-    (fun k => Nat.binomial n k)
+    -- `Nat.binomial` does not exist; the binomial coefficient is `Nat.choose`.
+    (fun k => Nat.choose n k)
 
 theorem erdos_632 : Problem632Prop := by
   sorry  -- Exact formula conjectured

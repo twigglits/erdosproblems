@@ -19,20 +19,20 @@ open Nat
 -- Basic graph theory definitions
 def Clique (n : ℕ) : Prop := n ≥ 1  -- Simplified: n-vertex complete graph
 
-def ChromaticNumber (n : ℕ) : ℕ := n  -- For complete graph K_n
+def ChromaticNumberComplete (n : ℕ) : ℕ := n  -- For complete graph K_n
 
 def MaxClique (n : ℕ) : ℕ := n  -- For complete graph K_n
 
 -- Fundamental theorem: χ(G) ≥ ω(G) (chromatic number ≥ max clique)
 theorem chromatic_ge_clique (n : ℕ) (_h : n > 0) :
-    ChromaticNumber n ≥ MaxClique n := by
-  unfold ChromaticNumber MaxClique
+    ChromaticNumberComplete n ≥ MaxClique n := by
+  unfold ChromaticNumberComplete MaxClique
   omega
 
 -- For complete graph K_n: χ(K_n) = ω(K_n) = n
-example : ChromaticNumber 3 = 3 := by unfold ChromaticNumber; norm_num
+example : ChromaticNumberComplete 3 = 3 := by unfold ChromaticNumberComplete; norm_num
 example : MaxClique 3 = 3 := by unfold MaxClique; norm_num
-example : ChromaticNumber 4 = 4 := by unfold ChromaticNumber; norm_num
+example : ChromaticNumberComplete 4 = 4 := by unfold ChromaticNumberComplete; norm_num
 
 -- Edge coloring bounds
 theorem edge_coloring_bound (n : ℕ) (h : n ≥ 2) :

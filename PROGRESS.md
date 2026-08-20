@@ -13,12 +13,29 @@ slowdown. All claims of GPU-accelerated verification in earlier revisions of thi
 **Current Progress** (measured by `lake build` on 2026-08-20, not estimated):
 
 - 36 Lean files: 34 problem files, plus `Basic` and `Audit`.
-- 15 files compile. 21 files do NOT compile.
-- 6 problems are machine-verified with zero `sorry`: **162, 389, 396, 441, 548, 727**.
-- 131 `sorry` occurrences remain across 28 files.
+- **All 36 compile, and `lake build` on the whole library succeeds with 0 errors.**
+  Before the repair pass on 2026-08-20, 21 files did not compile and the library did not build.
+- 7 problems are machine-verified with zero `sorry`: **162, 389, 396, 441, 519, 548, 727**.
+- 125 `sorry` tokens remain in source; Lean flags **86 declarations** as using `sorry`
+  (a single declaration can contain more than one).
 
-A file that compiles is not therefore proved. Lean accepts `sorry` and emits a warning, so 8 of the
-15 compiling files still contain unproved holes. Only the 6 problems listed above are complete.
+Building files one at a time hid five name collisions that only appear when the whole library is
+imported together. `UpperDensity`, `LowerDensity` (Erdos33 vs Erdos51), `ChromaticNumber`
+(Erdos73 vs Erdos548), `handshaking_lemma` (Erdos69 vs Lemmas) and `powers_of_two_ap_free`
+(Erdos342 vs Erdos51) each had two different definitions under one name. The narrower of each
+pair was renamed. Per-file success is NOT evidence that the library builds.
+
+A file that compiles is not therefore proved. Lean accepts `sorry` and emits a warning, so 28 of the
+36 compiling files still contain unproved holes. Only the 7 problems listed above are complete.
+
+The repair pass also found several statements that were FALSE as written, hidden behind `sorry` or
+behind an error that stopped elaboration before reaching them. Each is documented at its site:
+`Erdos342` (reciprocal sum 15/8 was claimed > 19/10), `Lemmas.pigeonhole_principle` (n+1 items in
+n+1 boxes forces no collision), `Erdos73.chromatic_lower_bound` (free variable α made it false),
+`Erdos519.greedy_coloring_bound` (false at `vertices = 0`), `Erdos250.mersenne_prime_index` (false
+at `n = 0`), `ErdosCollatz.trivial_cycle_one` (asserted `1 = 4`), `ErdosPerfectNumbers`
+(density claimed for every `N`, false at `N = 1`), and `Erdos51.squares_ap_free` (squares are NOT
+AP-free: 1, 25, 49 is a progression). The last is now proved in its corrected, negated form.
 
 See "Build Audit" below for the per-file result.
 
@@ -109,11 +126,13 @@ $$\frac{n}{1} = \frac{1}{x} + \frac{1}{y} + \frac{1}{z}$$
 #### Problem 250: Mersenne Numbers (42 lines)
 **Statement**: Infinitely many integers n such that 2^n - 1 has three distinct prime divisors
 
-**Status**: ❌ DOES NOT BUILD (2 `sorry`)
-- `lake build Erdos.Erdos250` fails: "No applicable extensionality theorem found for type ℕ"
-  at `Erdos250.lean:44:2`. A stale `.olean` from an earlier session made this look verified.
-- Nothing in this file is established. The example Mersenne primes are not checked either,
-  because the file never compiles.
+**Status**: 🟡 BUILDS, 2 `sorry` remain (repaired 2026-08-20)
+- Previously failed with "No applicable extensionality theorem found for type ℕ"; `ext` has no
+  such lemma for ℕ, so the two sums are now matched termwise via `Finset.sum_congr` and `pow_mul`.
+- `mersenne_prime_index` was FALSE as stated: at `n = 0` the hypothesis `p ∣ 2^0 - 1 = 0` holds
+  for every `p`, but `p = 2` cannot divide any `2^m - 1` (all odd). An `n > 0` hypothesis was added.
+- Still open here: the geometric-sum identity over ℕ, where truncated subtraction blocks the
+  standard ring lemma. It needs proving over ℤ and transferring.
 
 **Lean Certificate**: `lean/Erdos/Erdos250.lean`
 
@@ -156,9 +175,10 @@ least 5 distinct distances", with a Lean certificate and a CUDA sweep.
 #### Problem 213: Divisor Sum Bounds (45 lines)
 **Statement**: Develop bounds on σ(n)/n ratios for highly composite numbers
 
-**Status**: ❌ DOES NOT BUILD (2 `sorry`)
-- `lake build Erdos.Erdos213` fails: "Unknown constant `Nat.dvd_def`" at `Erdos213.lean:39:31`.
-- A stale `.olean` from an earlier session made this look verified. Nothing here is established.
+**Status**: 🟡 BUILDS, 2 `sorry` remain (repaired 2026-08-20)
+- `Nat.dvd_def` does not exist in Mathlib v4.31.0; the σ(6) = 12 example is now closed by
+  `decide`, which suits a finite computation.
+- `Nat.dvd_refl n` was used to prove `1 ∣ n`; its actual type is `n ∣ n`. Replaced by `one_dvd n`.
 
 **Lean Certificate**: `lean/Erdos/Erdos213.lean`
 
@@ -167,10 +187,12 @@ least 5 distinct distances", with a Lean certificate and a CUDA sweep.
 #### Problem 519: Graph Coloring Bounds (50 lines)
 **Statement**: Establish tight bounds on chromatic polynomials and coloring algorithms
 
-**Status**: ❌ DOES NOT BUILD (0 `sorry`)
-- `lake build Erdos.Erdos519` fails: "unsolved goals case pos" at `Erdos519.lean:36:2`.
-- This file has no `sorry`, which previously made it look complete. It is not. A file with zero
-  `sorry` that does not compile proves nothing. Brooks' theorem is NOT proven here.
+**Status**: ✅ VERIFIED (repaired 2026-08-20; compiles, zero `sorry`)
+- `greedy_coloring_bound` was FALSE as stated. Natural subtraction truncates, so at
+  `vertices = 0` the hypothesis reads `max_degree ≤ 0 - 1 = 0`, which `max_degree = 0` satisfies,
+  while the conclusion becomes `1 ≤ 0`. The missing `vertices > 0` hypothesis was added, after
+  which `omega` closes the goal.
+- This file previously had zero `sorry` AND did not compile, which is why it looked complete.
 
 **Lean Certificate**: `lean/Erdos/Erdos519.lean`
 
@@ -427,56 +449,53 @@ Test run: All verifications passed successfully.
 
 ---
 
-## Build Audit (2026-08-20)
+## Build Audit (2026-08-20, after repair pass)
 
 Produced by running `lake build <module>` on every file and recording the exit status.
-This replaces all earlier status claims in this repository, which were not measured.
 
-**Summary:** 15 of 36 files compile. 21 do not. 6 problems are complete with zero `sorry`
-(162, 389, 396, 441, 548, 727). 131 `sorry` occurrences remain across 28 files.
+**All 36 files now compile.** Before the repair pass, 21 of them did not.
 
-Three status levels are used, and they are not interchangeable:
+**7 problems are machine-verified** (compile with zero `sorry`):
+162, 389, 396, 441, 519, 548, 727. `Basic` is verified infrastructure.
 
-1. **Machine-verified** — the file compiles and contains no `sorry`. The Lean kernel checked it.
-2. **Compiles, contains unproved holes** — the file builds, but `sorry` stands in for a proof.
-   Lean reports this as a warning, not an error. Such a file proves nothing on its own.
-3. **Does not build** — the file has errors. It establishes nothing at all.
+**125 `sorry` occurrences remain across 28 files.** Compiling is NOT proving:
+Lean reports `sorry` as a warning, so a file can build and still prove nothing.
 
-| File | Compiles | `sorry` count | Honest status |
+| File | Compiles | `sorry` | Honest status |
 |---|---|---|---|
-| `Audit` | yes | 1 | Compiles, contains unproved holes |
+| `Audit` | yes | 1 | Compiles; unproved holes remain |
 | `Basic` | yes | 0 | **Machine-verified** |
-| `Erdos100` | yes | 4 | Compiles, contains unproved holes |
-| `Erdos116` | yes | 7 | Compiles, contains unproved holes |
-| `Erdos135` | **no** | 3 | Does not build |
-| `Erdos150` | yes | 2 | Compiles, contains unproved holes |
+| `Erdos100` | yes | 4 | Compiles; unproved holes remain |
+| `Erdos116` | yes | 7 | Compiles; unproved holes remain |
+| `Erdos135` | yes | 2 | Compiles; unproved holes remain |
+| `Erdos150` | yes | 2 | Compiles; unproved holes remain |
 | `Erdos162` | yes | 0 | **Machine-verified** |
-| `Erdos176` | **no** | 3 | Does not build |
-| `Erdos195` | **no** | 7 | Does not build |
-| `Erdos197` | yes | 5 | Compiles, contains unproved holes |
-| `Erdos213` | **no** | 2 | Does not build |
-| `Erdos244` | yes | 4 | Compiles, contains unproved holes |
-| `Erdos250` | **no** | 2 | Does not build |
-| `Erdos33` | yes | 4 | Compiles, contains unproved holes |
-| `Erdos342` | **no** | 3 | Does not build |
+| `Erdos176` | yes | 3 | Compiles; unproved holes remain |
+| `Erdos195` | yes | 7 | Compiles; unproved holes remain |
+| `Erdos197` | yes | 5 | Compiles; unproved holes remain |
+| `Erdos213` | yes | 2 | Compiles; unproved holes remain |
+| `Erdos244` | yes | 4 | Compiles; unproved holes remain |
+| `Erdos250` | yes | 1 | Compiles; unproved holes remain |
+| `Erdos33` | yes | 4 | Compiles; unproved holes remain |
+| `Erdos342` | yes | 3 | Compiles; unproved holes remain |
 | `Erdos389` | yes | 0 | **Machine-verified** |
 | `Erdos396` | yes | 0 | **Machine-verified** |
 | `Erdos441` | yes | 0 | **Machine-verified** |
-| `Erdos4` | **no** | 4 | Does not build |
-| `Erdos519` | **no** | 0 | Does not build |
-| `Erdos51` | **no** | 6 | Does not build |
-| `Erdos52` | **no** | 4 | Does not build |
+| `Erdos4` | yes | 2 | Compiles; unproved holes remain |
+| `Erdos519` | yes | 0 | **Machine-verified** |
+| `Erdos51` | yes | 6 | Compiles; unproved holes remain |
+| `Erdos52` | yes | 4 | Compiles; unproved holes remain |
 | `Erdos548` | yes | 0 | **Machine-verified** |
-| `Erdos60` | **no** | 2 | Does not build |
-| `Erdos632` | **no** | 4 | Does not build |
-| `Erdos69` | **no** | 8 | Does not build |
-| `Erdos71` | yes | 6 | Compiles, contains unproved holes |
+| `Erdos60` | yes | 2 | Compiles; unproved holes remain |
+| `Erdos632` | yes | 4 | Compiles; unproved holes remain |
+| `Erdos69` | yes | 8 | Compiles; unproved holes remain |
+| `Erdos71` | yes | 6 | Compiles; unproved holes remain |
 | `Erdos727` | yes | 0 | **Machine-verified** |
-| `Erdos72` | **no** | 3 | Does not build |
-| `Erdos73` | **no** | 3 | Does not build |
-| `Erdos86` | **no** | 6 | Does not build |
-| `ErdosCollatz` | **no** | 8 | Does not build |
-| `ErdosGoldbach` | **no** | 4 | Does not build |
-| `ErdosPerfectNumbers` | **no** | 9 | Does not build |
-| `ErdosTwinPrimes` | **no** | 2 | Does not build |
-| `Lemmas` | **no** | 15 | Does not build |
+| `Erdos72` | yes | 3 | Compiles; unproved holes remain |
+| `Erdos73` | yes | 3 | Compiles; unproved holes remain |
+| `Erdos86` | yes | 6 | Compiles; unproved holes remain |
+| `ErdosCollatz` | yes | 8 | Compiles; unproved holes remain |
+| `ErdosGoldbach` | yes | 4 | Compiles; unproved holes remain |
+| `ErdosPerfectNumbers` | yes | 8 | Compiles; unproved holes remain |
+| `ErdosTwinPrimes` | yes | 2 | Compiles; unproved holes remain |
+| `Lemmas` | yes | 14 | Compiles; unproved holes remain |

@@ -32,37 +32,30 @@ theorem mersenne_divisibility_property (d n : ℕ) (hd : d ∣ n) (hd0 : d > 0) 
   -- For x = 2^d: (2^d)^m - 1 = (2^d - 1) * (1 + 2^d + (2^d)^2 + ... + (2^d)^(m-1))
   use (Finset.range m).sum (fun i => 2^(d * i))
   have sum_geom : (2 ^ d) ^ m - 1 = (2 ^ d - 1) * ((Finset.range m).sum fun i => (2 ^ d) ^ i) := by
-    cases m with
-    | zero => simp
-    | succ m =>
-      -- For m+1: (2^d)^(m+1) - 1 = (2^d - 1) * (sum of (2^d)^i for i in 0..m)
-      simp [Finset.sum_range_succ]
-      ring_nf
-      sorry -- This requires induction on geometric series which is in mathlib
+    -- `geom_sum_mul` lives in a commutative RING. Over ℕ subtraction truncates, so the
+    -- identity has to be proved over ℤ and transferred back using `2 ^ d ≥ 1`.
+    sorry
   rw [sum_geom]
   congr 1
-  ext i
-  ring
+  -- `ext` has no extensionality lemma for ℕ; the two sums agree termwise instead,
+  -- because `(2 ^ d) ^ i = 2 ^ (d * i)` by `pow_mul`.
+  refine Finset.sum_congr rfl ?_
+  intro i _
+  rw [← pow_mul]
 
 -- If p | M_n, then p divides M_m for some m | n (and m is minimal divisor of n)
-theorem mersenne_prime_index (n p : ℕ) (hp : p.Prime) (hp_div : p ∣ 2^n - 1) :
+-- The `n > 0` hypothesis is REQUIRED and was missing. At `n = 0` the hypothesis reads
+-- `p ∣ 2^0 - 1 = 0`, which every `p` satisfies, while the conclusion needs some `m > 0`
+-- with `p ∣ 2^m - 1`. Taking `p = 2` breaks it: `2^m - 1` is odd for every `m ≥ 1`.
+-- NOTE: the mathematically interesting statement asks for the MINIMAL such `m` (the
+-- multiplicative order of 2 mod p). That is strictly stronger than what is stated here.
+theorem mersenne_prime_index (n p : ℕ) (hp : p.Prime) (hn : n > 0) (hp_div : p ∣ 2^n - 1) :
     ∃ m, m ∣ n ∧ p ∣ 2^m - 1 ∧ m > 0 := by
   -- By Well-ordering, there exists a minimal divisor m of n with p | 2^m - 1
   -- Such m exists because p | 2^n - 1, and divisors of n form a nonempty set
-  by_cases hn : n = 0
-  · simp [hn] at hp_div
-    -- If n = 0, then 2^0 - 1 = 1 - 1 = 0, so p | 0, contradiction for prime p
-    simp at hp_div
-  · -- n ≠ 0
-    -- Use well-founded induction on divisors of n
-    -- The minimal divisor m of n such that p | 2^m - 1 is the answer
-    use 1
-    refine ⟨Nat.dvd_one, ?_, by omega⟩
-    -- If not, then p ∤ 2^1 - 1 = 1, so p ∣ 2^n - 1 but p ∤ 1
-    -- We need to show p divides 2^1 - 1 or some divisor
-    -- Actually, 2^1 - 1 = 1, and p is prime, so p ∤ 1
-    -- Therefore we need the minimal divisor argument
-    sorry -- Requires well-founded induction on divisors
+  -- As stated, the conclusion only asks for SOME divisor `m` of `n` with `p ∣ 2^m - 1`,
+  -- and `m = n` already satisfies all three conjuncts. No induction is needed.
+  exact ⟨n, dvd_refl n, hp_div, hn⟩
 
 -- Simple verification: M_2 = 3, M_3 = 7, M_5 = 31 are Mersenne primes
 example : MersenneMod 2 = 3 := by unfold MersenneMod; norm_num

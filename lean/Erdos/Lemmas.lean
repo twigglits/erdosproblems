@@ -4,10 +4,11 @@
 Common lemmas and tactics supporting formalization across multiple Erdős problems.
 -/
 
+-- `Erdos.Basic` already does `import Mathlib`, so no further imports are needed.
+-- The previous imports named modules that do not exist in Mathlib v4.31.0
+-- (`Mathlib.Data.Nat.Gcd.Basic` is now `GCD.Basic`, and `Algebra.BigOperators.Basic`
+-- was split), which broke this file and every file importing it.
 import Erdos.Basic
-import Mathlib.Data.Nat.Prime.Defs
-import Mathlib.Data.Nat.Gcd.Basic
-import Mathlib.Algebra.BigOperators.Basic
 
 namespace Erdos
 
@@ -30,8 +31,7 @@ theorem large_prime_divisor_necessary (n : ℕ) (h : n > 1) :
 
 -- Lemma: Consecutive integers are coprime
 lemma consecutive_integers_coprime (k : ℕ) : Nat.gcd k (k + 1) = 1 := by
-  rw [Nat.gcd_comm]
-  exact Nat.gcd_eq_one_iff_coprime.mpr (Nat.coprime_succ_self k)
+  simpa using Nat.coprime_succ_self_right (n := k)
 
 -- Lemma: gcd(a,b) = 1 iff no prime divides both
 lemma coprime_iff_no_prime_divides_both (a b : ℕ) :
@@ -40,7 +40,7 @@ lemma coprime_iff_no_prime_divides_both (a b : ℕ) :
   · intro h_coprime p hp ⟨ha, hb⟩
     have : p ∣ Nat.gcd a b := Nat.dvd_gcd ha hb
     rw [h_coprime] at this
-    exact Nat.Prime.not_unit hp (Nat.eq_one_of_dvd_one this)
+    exact hp.ne_one (Nat.eq_one_of_dvd_one this)
   · intro h_no_prime
     sorry  -- Requires fundamental theorem of arithmetic
 
@@ -49,23 +49,22 @@ lemma coprime_iff_no_prime_divides_both (a b : ℕ) :
 -- ============================================================================
 
 -- Pigeonhole: n+1 elements in n boxes implies one box has 2+ elements
+-- NOTE: the hypothesis was `A.card > n`, which makes this lemma FALSE. The map
+-- `a ↦ a % (n+1)` has `n+1` residue classes, so `n+1` elements can sit one per box.
+-- Counterexample at the old statement: `n = 1`, `A = {0, 1}`; `A.card = 2 > 1`, yet
+-- box 0 = {0} and box 1 = {1} both have card 1. The hypothesis must exceed the box
+-- count, so it is `A.card > n + 1`.
 lemma pigeonhole_principle (n : ℕ) (A : Finset ℕ) :
-    A.card > n →
+    A.card > n + 1 →
     ∃ box : ℕ, box ≤ n ∧
     (Finset.filter (fun a => a % (n + 1) = box) A).card ≥ 2 := by
-  intro h_card
-  -- Divide elements by n+1 to get residue classes
-  by_contra h_neg
-  push_neg at h_neg
-  -- If every box has ≤ 1 element, total ≤ n+1, contradiction
-  have : A.card ≤ n + 1 := by
-    sorry  -- Requires summing finset cardinalities
-  omega
+  -- Needs `Finset.exists_lt_card_fiber_of_mul_lt_card_of_maps_to` and a sum over fibers.
+  sorry
 
 -- Pigeonhole for pairs
 lemma pigeonhole_pairs (n : ℕ) (A : Finset ℕ) (h : A.card = n + 1) (h_range : ∀ a ∈ A, a ≤ 2 * n) :
     ∃ pair_idx : Fin n,
-    ∃ a b ∈ A, a ≠ b ∧
+    ∃ a ∈ A, ∃ b ∈ A, a ≠ b ∧
     2 * pair_idx.val + 1 = a ∧ 2 * pair_idx.val + 2 = b := by
   -- Partition {1..2n} into n pairs {1,2}, {3,4}, ..., {2n-1,2n}
   -- With n+1 elements in n pairs, some pair must be complete
@@ -91,7 +90,6 @@ theorem triangle_free_bound (n : ℕ) :
     -- No three vertices form triangle
     True := by
   use n * n / 4
-  sorry
 
 -- ============================================================================
 -- DENSITY AND LIMIT ARGUMENTS
@@ -107,8 +105,11 @@ def upper_density (A : Set ℕ) : ℚ :=
 
 -- Positive density implies arbitrarily large gaps have positive proportion
 lemma positive_density_gaps (A : Set ℕ) (δ : ℚ) (h : lower_density A ≥ δ) (hδ : δ > 0) :
+    -- `n ∈ A` is not decidable for a `Set ℕ`, so `Finset.filter` cannot be used here.
+    -- `Set.ncard` states the same count without needing a decidability instance, and the
+    -- cast to ℚ is required because the right-hand side is rational.
     ∀ k : ℕ, ∃ N : ℕ,
-    (Finset.filter (fun n => n ≤ N ∧ n ∈ A) (Finset.range (N + 1))).card > δ * N := by
+    (((A ∩ {n | n ≤ N}).ncard : ℚ) > δ * N) := by
   sorry
 
 -- ============================================================================
@@ -120,9 +121,9 @@ lemma ramsey_bound (s t : ℕ) :
     ∃ R : ℕ, ∀ n ≥ R,
     ∀ coloring : Fin n → Fin 2,
     (∃ color : Fin 2, ∃ S : Finset (Fin n),
-     S.card ≥ s ∧ ∀ a b ∈ S, a ≠ b → coloring a = color) ∨
+     S.card ≥ s ∧ ∀ a ∈ S, ∀ b ∈ S, a ≠ b → coloring a = color) ∨
     (∃ color : Fin 2, ∃ S : Finset (Fin n),
-     S.card ≥ t ∧ ∀ a b ∈ S, a ≠ b → coloring a ≠ color) := by
+     S.card ≥ t ∧ ∀ a ∈ S, ∀ b ∈ S, a ≠ b → coloring a ≠ color) := by
   sorry
 
 -- ============================================================================

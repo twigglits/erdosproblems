@@ -42,11 +42,15 @@ lemma pigeonhole_six_vertices (coloring : Fin 6 → Fin 2) :
 -- Key insight: Among 3 vertices of same color, we can find monochromatic triangle
 -- (This requires analyzing edge colorings among the monochromatic vertex set)
 lemma three_vertices_contain_triangle (v1 v2 v3 : Fin 6) (h : v1 ≠ v2 ∧ v2 ≠ v3 ∧ v1 ≠ v3) :
-    ∃ edge_color : (Fin 2 → Fin 2),  -- edge coloring between each pair
+    -- Three vertices span THREE pairs, so the index type must be `Fin 3`, not `Fin 2`.
+    -- As written, `(⟨2, _⟩ : Fin 2)` demanded a proof of `2 < 2`, which does not exist.
+    -- NOTE: even well-typed, this statement is trivially true (it only asks that SOME
+    -- colouring exist), so it does not capture the intended pigeonhole argument.
+    ∃ edge_color : (Fin 3 → Fin 2),  -- one colour per pair of the three vertices
       ∃ mono_color : Fin 2,
-        (edge_color (⟨0, by norm_num⟩) = mono_color) ∨
-        (edge_color (⟨1, by norm_num⟩) = mono_color) ∨
-        (edge_color (⟨2, by norm_num⟩) = mono_color) := by
+        (edge_color 0 = mono_color) ∨
+        (edge_color 1 = mono_color) ∨
+        (edge_color 2 = mono_color) := by
   sorry
 
 -- Main Ramsey theorem: R(3,3) = 6
@@ -89,7 +93,9 @@ theorem monochromatic_path_2color (n : ℕ) (h : n ≥ 6) :
   sorry
 
 -- Generalization: k-coloring of edges requires larger n
-theorem monochromatic_path_kcolor (k n : ℕ) (h : n ≥ RamseyNumber k) :
+-- `Fin k` only has a `0` when `k ≠ 0`, so the `NeZero k` instance is required for
+-- `edge_coloring i i = 0` to elaborate.
+theorem monochromatic_path_kcolor (k n : ℕ) [NeZero k] (h : n ≥ RamseyNumber k) :
     ∀ edge_coloring : (Fin n → Fin n → Fin k),
       (∀ i, edge_coloring i i = 0) →
       (∀ i j, edge_coloring i j = edge_coloring j i) →

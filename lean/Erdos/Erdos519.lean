@@ -27,20 +27,14 @@ theorem brooks_lower_bound (n : ℕ) (h : n ≥ 2) :
   omega
 
 -- Greedy coloring: χ(G) ≤ Δ(G) + 1
+-- The `vertices > 0` hypothesis is REQUIRED and was missing. Natural subtraction truncates,
+-- so at `vertices = 0` the hypothesis reads `max_degree ≤ 0 - 1 = 0`, which `max_degree = 0`
+-- satisfies, while the conclusion becomes `1 ≤ 0`. The original statement was false.
 theorem greedy_coloring_bound (vertices max_degree : ℕ)
+    (hv : vertices > 0)
     (h : max_degree ≤ vertices - 1) :
     max_degree + 1 ≤ vertices := by
-  -- If max_degree ≤ vertices - 1, then max_degree + 1 ≤ vertices
-  -- Proof: Case on whether vertices = 0
-  by_cases hv : vertices = 0
-  · -- If vertices = 0, then max_degree ≤ 0 - 1 = 0 (impossible for Nat)
-    simp [hv] at h
-  · -- vertices ≠ 0, so vertices ≥ 1
-    have hv_pos : vertices ≥ 1 := Nat.pos_of_ne_zero hv
-    -- For Nat: if vertices ≥ 1, then vertices - 1 + 1 = vertices
-    have : vertices - 1 + 1 = vertices := Nat.sub_add_cancel hv_pos
-    -- So if max_degree ≤ vertices - 1, then max_degree + 1 ≤ vertices - 1 + 1 = vertices
-    omega
+  omega
 
 -- Chromatic number of complete graph K_n = n
 theorem complete_graph_chromatic (n : ℕ) (_h : n > 0) :

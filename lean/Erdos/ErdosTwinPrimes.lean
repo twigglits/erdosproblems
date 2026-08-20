@@ -53,9 +53,11 @@ def TwinPrimeDensity (N : ℕ) : ℚ :=
 -- Hardy-Littlewood conjecture: density ~ 2C₂ log(N) / log²(N)
 -- where C₂ ≈ 0.6601... (twin prime constant)
 theorem hardy_littlewood_conjecture :
-    ∃ C₂ : ℝ, C₂ ≈ 0.6601 ∧
+    -- `≈` is not Lean notation. The intended "approximately 0.6601" is stated as an
+    -- explicit error bound, and the ℚ-valued density is cast to ℝ to match the bound.
+    ∃ C₂ : ℝ, |C₂ - 0.6601| < 0.0001 ∧
     ∀ N : ℕ,
-    TwinPrimeDensity N ≤ 2 * C₂ * (Real.log (N : ℝ)) / (Real.log (N : ℝ))^2 := by
+    (TwinPrimeDensity N : ℝ) ≤ 2 * C₂ * (Real.log (N : ℝ)) / (Real.log (N : ℝ))^2 := by
   sorry
 
 -- ============================================================================

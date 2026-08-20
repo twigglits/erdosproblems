@@ -25,7 +25,7 @@ def SumReciprocals (A : Finset ℕ) : ℚ :=
 
 -- No 3-term arithmetic progression in A
 def NoAPThree (A : Finset ℕ) : Prop :=
-  ∀ a b c ∈ A, a < b → b < c → 2 * b ≠ a + c
+  ∀ a ∈ A, ∀ b ∈ A, ∀ c ∈ A, a < b → b < c → 2 * b ≠ a + c
 
 -- ============================================================================
 -- BASIC FACTS
@@ -41,7 +41,6 @@ lemma odd_reciprocal_contribution :
 lemma example_ap_free :
     NoAPThree {1, 2, 4} := by
   simp [NoAPThree]
-  norm_num
 
 -- Reciprocal sum of example set
 lemma example_reciprocal_sum :
@@ -76,10 +75,9 @@ theorem reciprocal_sum_bound_range (A : Finset ℕ) (h : NoAPThree A)
 -- ============================================================================
 
 -- Construction: powers of 2 (minimizes AP constraint)
-lemma powers_of_two_ap_free :
+lemma powers_of_two_no_ap_three :
     NoAPThree {1, 2, 4, 8, 16, 32} := by
   simp [NoAPThree]
-  norm_num [pow_succ]
 
 -- Reciprocal sum of powers of 2 (up to 32)
 lemma powers_of_two_sum :
@@ -114,9 +112,12 @@ theorem reciprocal_sum_maximum_exists :
      SumReciprocals A₀ > M - (1 : ℚ) / 10) := by
   use 2
   refine ⟨by norm_num, fun A h hA => reciprocal_sum_bound A h hA, ?_⟩
-  use {1, 2, 4, 8}
+  -- {1,2,4,8} does NOT work: its reciprocal sum is 15/8 = 1.875, which is not > 1.9.
+  -- Powers of two are AP-free (2^(j+1) = 2^i + 2^k has no solution with i < j < k),
+  -- so extend to {1,2,4,8,16}: the sum is 31/16 = 1.9375 > 19/10.
+  use {1, 2, 4, 8, 16}
   refine ⟨?_, ?_, ?_⟩
-  · simp [NoAPThree]; norm_num
+  · simp [NoAPThree]
   · simp
   · norm_num [SumReciprocals]
 

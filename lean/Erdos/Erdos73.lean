@@ -73,7 +73,6 @@ theorem complete_graph_bound (n : ℕ) (hn : n > 0) :
     let α_K_n := 1  -- independence number of K_n
     χ_K_n * α_K_n ≥ n := by
   simp
-  omega
 
 -- ============================================================================
 -- SPECIAL CASE 2: Bipartite Graph K_{m,n}
@@ -88,7 +87,11 @@ theorem bipartite_bound (m n : ℕ) (hm : m > 0) (hn : n > 0) :
     let χ_bipartite := 2  -- chromatic number
     let α_bipartite := Nat.max m n  -- independence number
     χ_bipartite * α_bipartite ≥ m + n := by
-  simp
+  -- `2 * max m n ≥ m + n` holds because the max dominates both arguments.
+  intro χ_bipartite α_bipartite
+  show 2 * Nat.max m n ≥ m + n
+  have h1 : m ≤ Nat.max m n := Nat.le_max_left m n
+  have h2 : n ≤ Nat.max m n := Nat.le_max_right m n
   omega
 
 -- ============================================================================
@@ -103,19 +106,26 @@ theorem bipartite_bound (m n : ℕ) (hm : m > 0) (hn : n > 0) :
 theorem equality_condition (vertices χ : ℕ) (hχ : χ > 0) (hdiv : χ ∣ vertices) :
     let α := vertices / χ
     χ * α = vertices := by
-  simp
-  omega
+  -- `omega` cannot reason about division. Divisibility gives this directly.
+  intro α
+  exact Nat.mul_div_cancel' hdiv
 
 -- ============================================================================
 -- LOWER BOUND COROLLARY
 -- ============================================================================
 
 -- Corollary: Every graph satisfies χ(G) ≥ |V| / α(G)
-theorem chromatic_lower_bound (vertices α : ℕ) (hα : α > 0) :
-    let χ := ChromaticNumber vertices
-    χ ≥ vertices / α := by
-  have h := chromatic_independence_product vertices
-  omega
+-- The original took `α` as a FREE variable, which makes the claim false: choosing `α = 1`
+-- would force `χ ≥ vertices` for every graph. The bound only holds for the graph's own
+-- independence number, which is what `chromatic_independence_product` supplies.
+theorem chromatic_lower_bound (vertices : ℕ) (hα : IndependenceNumber vertices > 0) :
+    ChromaticNumber vertices ≥ vertices / IndependenceNumber vertices := by
+  have h : vertices ≤ ChromaticNumber vertices * IndependenceNumber vertices :=
+    chromatic_independence_product vertices
+  calc vertices / IndependenceNumber vertices
+      ≤ (ChromaticNumber vertices * IndependenceNumber vertices)
+          / IndependenceNumber vertices := Nat.div_le_div_right h
+    _ = ChromaticNumber vertices := Nat.mul_div_cancel _ hα
 
 -- Special case: Complete graph K_n
 -- χ(K_n) = n (each vertex needs own color)
@@ -132,6 +142,8 @@ example : ∀ n : ℕ, n > 0 → n * 1 ≥ n := by
 -- Product: 2 * max(m,n) ≥ m + n for m,n ≥ 1
 example : ∀ m n : ℕ, m > 0 → n > 0 → 2 * Nat.max m n ≥ m + n := by
   intro m n _ _
+  have h1 : m ≤ Nat.max m n := Nat.le_max_left m n
+  have h2 : n ≤ Nat.max m n := Nat.le_max_right m n
   omega
 
 end Erdos

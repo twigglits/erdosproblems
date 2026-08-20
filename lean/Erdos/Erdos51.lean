@@ -27,11 +27,11 @@ def NoAPSequence (a : ℕ → ℕ) : Prop :=
   (∀ i j k : ℕ, i < j → j < k → 2 * a j ≠ a i + a k)
 
 -- Upper density: limsup |{a_i : a_i ≤ n}| / n as n → ∞
-def UpperDensity (a : ℕ → ℕ) : ℚ :=
+def UpperDensitySeq (a : ℕ → ℕ) : ℚ :=
   sorry  -- Formalized as limit superior of count ratio
 
 -- Lower density: liminf |{a_i : a_i ≤ n}| / n
-def LowerDensity (a : ℕ → ℕ) : ℚ :=
+def LowerDensitySeq (a : ℕ → ℕ) : ℚ :=
   sorry  -- Formalized as limit inferior
 
 -- ============================================================================
@@ -41,8 +41,11 @@ def LowerDensity (a : ℕ → ℕ) : ℚ :=
 -- Key fact: Any set with positive density contains arbitrarily long APs
 -- For our purposes: positive density ⟹ contains 3-term AP
 
-theorem positive_density_has_ap (A : Set ℕ) (h : ∃ δ > 0, ∀ N : ℕ,
-    (Finset.filter (· ∈ A) (Finset.range N)).card > δ * N) :
+-- `· ∈ A` is not decidable for a `Set ℕ`, so `Finset.filter` could not elaborate, and the
+-- ℕ-valued cardinality was compared against a rational. `Set.ncard` avoids the decidability
+-- instance, and the count is cast to ℚ to match `δ * N`.
+theorem positive_density_has_ap (A : Set ℕ) (h : ∃ δ : ℚ, δ > 0 ∧ ∀ N : ℕ,
+    (((A ∩ {n | n < N}).ncard : ℚ) > δ * N)) :
     ∃ a b c : ℕ, a < b ∧ b < c ∧ 2 * b = a + c ∧ a ∈ A ∧ b ∈ A ∧ c ∈ A := by
   -- Szemerédi's theorem: any set of positive density contains 3-term AP
   -- Full proof requires van der Waerden numbers and density lemma
@@ -54,14 +57,14 @@ theorem positive_density_has_ap (A : Set ℕ) (h : ∃ δ > 0, ∀ N : ℕ,
 
 -- Corollary: AP-free sequences must have zero density
 theorem ap_free_zero_density (a : ℕ → ℕ) (h : NoAPSequence a) :
-    UpperDensity a = 0 := by
+    UpperDensitySeq a = 0 := by
   -- Proof by contradiction
   by_contra h_nonzero
-  -- Assume UpperDensity a > 0
+  -- Assume UpperDensitySeq a > 0
   push_neg at h_nonzero
   -- Then the set {a_i : i ∈ ℕ} has positive density
-  have h_dense : ∃ δ > 0, ∀ N : ℕ,
-      (Finset.filter (· ∈ {a i | i : ℕ}) (Finset.range N)).card > δ * N := by
+  have h_dense : ∃ δ : ℚ, δ > 0 ∧ ∀ N : ℕ,
+      ((({a i | i : ℕ} ∩ {n | n < N}).ncard : ℚ) > δ * N) := by
     sorry  -- Convert from density definition
   -- By Szemerédi, this set contains 3-term AP
   obtain ⟨x, y, z, hx_lt_y, hy_lt_z, h_ap, hx_in, hy_in, hz_in⟩ :=
@@ -73,13 +76,10 @@ theorem ap_free_zero_density (a : ℕ → ℕ) (h : NoAPSequence a) :
   obtain ⟨k, rfl⟩ := hz_in
   -- Now 2 * a j = a i + a k, contradicting NoAPSequence
   have h_contra := h.2 i j k
-  have : i < j ∧ j < k := by
-    constructor
-    · by_contra h_not_lt
-      omega
-    · by_contra h_not_lt
-      omega
-  exact h_contra this.1 this.2 h_ap
+  -- `omega` cannot recover `i < j` from `a i < a j`; that needs strict monotonicity,
+  -- which follows from the pointwise step `a i < a (i+1)` given by `h.1`.
+  have hmono : StrictMono a := strictMono_nat_of_lt_succ h.1
+  exact h_contra (hmono.lt_iff_lt.mp hx_lt_y) (hmono.lt_iff_lt.mp hy_lt_z) h_ap
 
 -- ============================================================================
 -- EXAMPLES OF AP-FREE SEQUENCES
@@ -89,33 +89,47 @@ theorem ap_free_zero_density (a : ℕ → ℕ) (h : NoAPSequence a) :
 lemma powers_of_two_ap_free :
     NoAPSequence (fun n => 2 ^ n) := by
   constructor
-  · intro i
-    norm_num
-  · intro i j k _ _
-    norm_num [pow_add]
+  · -- Strictly increasing: 2^(i+1) = 2 * 2^i > 2^i, since 2^i > 0.
+    intro i
+    show (2:ℕ) ^ i < 2 ^ (i + 1)
+    have hpos : (0:ℕ) < 2 ^ i := pow_pos (by norm_num) i
+    have hstep : (2:ℕ) ^ (i + 1) = 2 * 2 ^ i := by rw [pow_succ]; ring
+    omega
+  · -- No 3-term AP: with i < j < k we have k ≥ j+1, so
+    --   2 * 2^j = 2^(j+1) ≤ 2^k < 2^i + 2^k,
+    -- because 2^i > 0. So the two sides can never be equal.
+    intro i j k _ hjk
+    show (2:ℕ) * 2 ^ j ≠ 2 ^ i + 2 ^ k
+    have hk : j + 1 ≤ k := hjk
+    have hle : (2:ℕ) ^ (j + 1) ≤ 2 ^ k := Nat.pow_le_pow_right (by norm_num) hk
+    have hpos : (0:ℕ) < 2 ^ i := pow_pos (by norm_num) i
+    have hstep : (2:ℕ) ^ (j + 1) = 2 * 2 ^ j := by rw [pow_succ]; ring
+    omega
 
 -- Example 2: Primes (density zero by PNT)
 -- (Cannot formalize without prime number theorem)
 
--- Example 3: Square numbers (density zero, ~n^(1/2))
-lemma squares_ap_free :
-    NoAPSequence (fun n => n ^ 2) := by
-  constructor
-  · intro i
-    norm_num [sq]
-  · intro i j k hij hjk
-    -- If 2j² = i² + k², this has few integer solutions
-    sorry
+-- Example 3: Square numbers.
+-- CORRECTION: the squares are NOT AP-free, so the original `squares_ap_free` lemma was
+-- false. Witness: 1, 25, 49 (that is i = 1, j = 5, k = 7) satisfies 2 * 25 = 50 = 1 + 49.
+-- The `sorry` in the original proof concealed this. The true statement is the negation,
+-- and unlike the original it is fully proved below.
+lemma squares_not_ap_free :
+    ¬ NoAPSequence (fun n => n ^ 2) := by
+  intro h
+  have hcontra := h.2 1 5 7 (by norm_num) (by norm_num)
+  norm_num at hcontra
 
 -- ============================================================================
 -- UPPER BOUNDS ON DENSITY
 -- ============================================================================
 
 -- Known result: Every AP-free set A ⊆ [1,n] has |A| ≤ n / log(log n) · (1+o(1))
-theorem ap_free_density_bound (A : Set ℕ) (h_ap_free : ∀ a b c ∈ A,
-    a < b → b < c → 2 * b ≠ a + c) (n : ℕ) :
-    let count := (Finset.filter (· ∈ A) (Finset.range (n + 1))).card
-    count ≤ n / (Real.log (Real.log n) + 1) := by
+-- `∀ a b c ∈ A` is not valid Lean (the `∈` binder takes one variable), `· ∈ A` is not
+-- decidable for a `Set`, and a ℕ count cannot be compared to a real bound without a cast.
+theorem ap_free_density_bound (A : Set ℕ)
+    (h_ap_free : ∀ a ∈ A, ∀ b ∈ A, ∀ c ∈ A, a < b → b < c → 2 * b ≠ a + c) (n : ℕ) :
+    (((A ∩ {m | m ≤ n}).ncard : ℝ) ≤ n / (Real.log (Real.log n) + 1)) := by
   -- This uses bounds from Ramsey theory / extremal combinatorics
   sorry
 

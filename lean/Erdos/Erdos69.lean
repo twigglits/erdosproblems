@@ -59,9 +59,12 @@ lemma max_degree_six :
 --   2 * edges ≤ 6n
 --   edges ≤ 3n
 
-lemma handshaking_lemma (n : ℕ) (max_degree : ℕ) :
+lemma handshaking_unit_distance (n : ℕ) (max_degree : ℕ) :
     let edges := MaxUnitDistances n
-    (∀ v : Fin n, (Finset.filter (fun u => u ≠ v) (Finset.range n)).card ≤ max_degree) →
+    -- `Finset.range n` holds naturals, but `v : Fin n`, so `u ≠ v` did not typecheck.
+    -- Filtering over `Finset.univ : Finset (Fin n)` keeps both sides in `Fin n`.
+    (∀ v : Fin n,
+      (Finset.filter (fun u => u ≠ v) (Finset.univ : Finset (Fin n))).card ≤ max_degree) →
     edges ≤ (n * max_degree) / 2 := by
   intro h_degree
   -- Sum of all degrees ≤ n * max_degree
@@ -85,8 +88,12 @@ lemma degree_sum_bound (n : ℕ) :
 -- Spencer-Szemerédi-Trotter: n points, m lines → at most O(n^(2/3)*m^(2/3) + n + m) incidences
 -- Applied to unit distance graph: yields O(n^(4/3))
 
+-- A ℚ base with a ℚ exponent has no `HPow` instance; the bound is restated over ℝ, where
+-- `Real.rpow` gives the cube root meaning, and the ℕ-valued left side is cast.
+-- CAVEAT: this expression is Θ(n²), which does NOT match the O(n^(4/3)) claimed in the
+-- comment above. The original expression is kept here rather than silently replaced.
 theorem unit_distance_bound_improved (n : ℕ) (hn : n ≥ 1) :
-    MaxUnitDistances n ≤ (4 * n^2) / (3 : ℚ) ^ (1/3 : ℚ) := by
+    (MaxUnitDistances n : ℝ) ≤ (4 * (n : ℝ) ^ 2) / (3 : ℝ) ^ ((1 : ℝ) / 3) := by
   -- This uses the Spencer-Szemerédi-Trotter theorem
   -- Let m = MaxUnitDistances n
   -- The n points and m unit distance pairs form an incidence structure
@@ -99,7 +106,8 @@ theorem unit_distance_asymptotic :
     C > 0 ∧
     ∀ n : ℕ,
     n > 0 →
-    MaxUnitDistances n ≤ C * (n : ℝ) ^ (4/3 : ℚ) := by
+    -- The exponent must be real for `Real.rpow`; a ℚ exponent has no instance here.
+    (MaxUnitDistances n : ℝ) ≤ C * (n : ℝ) ^ ((4 : ℝ) / 3) := by
   use 4  -- Conservative bound; actual constant likely ~1.5-2
   constructor
   · norm_num
@@ -122,7 +130,7 @@ theorem unit_distance_lower_bound_grid :
     (point_set n).ncard = n ∧
     ∃ edges : ℕ,
     edges ≥ n ∧
-    (∀ p q ∈ point_set n, p ≠ q → dist p q = 1 → True) := by
+    (∀ p ∈ point_set n, ∀ q ∈ point_set n, p ≠ q → dist p q = 1 → True) := by
   -- Grid construction: points at (i, j) for i, j ∈ {0..⌊√n⌋}
   sorry
 

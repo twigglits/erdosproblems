@@ -13,7 +13,7 @@ namespace Erdos
 
 -- Distinct differences set
 def DistinctDifferences (A : Finset ℕ) : Set ℕ :=
-  {d : ℕ | ∃ a b ∈ A, a > b ∧ d = a - b}
+  {d : ℕ | ∃ a ∈ A, ∃ b ∈ A, a > b ∧ d = a - b}
 
 -- Erdős conjecture: n points in [1,2n] have ≥ n-1 distinct differences
 def Problem60Prop : Prop :=
