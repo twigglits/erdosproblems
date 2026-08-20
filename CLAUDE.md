@@ -1,6 +1,8 @@
 # Erdős Problems Research Methodology
 
-## CRITICAL INSTRUCTION: SEQUENTIAL WORK ONLY
+## CRITICAL INSTRUCTIONS
+
+### Sequential Work Only
 
 **ALL WORK ON ERDŐS PROBLEMS MUST BE SEQUENTIAL, NEVER PARALLEL.**
 
@@ -11,6 +13,23 @@
 - Do NOT spawn multiple concurrent proof attempts
 
 Rationale: Parallel branches create merge complexity, proof confusion, and lost work. Sequential allows focus, clean handoff, and auditable progress.
+
+### Agent Model Constraint
+
+**WHEN SPAWNING AGENTS OR SUBAGENTS:**
+
+- **NEVER use Haiku model** (weakest, insufficient for proof work)
+- **Minimum allowed: Sonnet** (capable reasoning for mathematics)
+- **Preferred: Opus** (advanced reasoning for complex proofs)
+- **Default: Inherit parent model** (unless specified override needed)
+
+Rationale: Haiku produces unreliable proofs and low-quality mathematical reasoning. Sonnet minimum ensures quality. Opus recommended for challenging Erdős problems.
+
+**Examples**:
+- Fetching literature: Sonnet minimum
+- Formalizing proofs: Opus recommended
+- Verification: Sonnet minimum
+- Research synthesis: Sonnet minimum
 
 ---
 
