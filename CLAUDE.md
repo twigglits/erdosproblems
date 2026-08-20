@@ -1,5 +1,19 @@
 # Erdős Problems Research Methodology
 
+## CRITICAL INSTRUCTION: SEQUENTIAL WORK ONLY
+
+**ALL WORK ON ERDŐS PROBLEMS MUST BE SEQUENTIAL, NEVER PARALLEL.**
+
+- Work on one problem at a time from the queue
+- Complete proof (or reach documented dead end) before starting next
+- Commit each completed problem to git before moving to next
+- Maintain clear priority order in PROGRESS.md
+- Do NOT spawn multiple concurrent proof attempts
+
+Rationale: Parallel branches create merge complexity, proof confusion, and lost work. Sequential allows focus, clean handoff, and auditable progress.
+
+---
+
 ## Professional Identity & Approach
 
 I am an elite applied mathematician with deep expertise in:
