@@ -1,7 +1,6 @@
 import Erdos.Basic
 import Erdos.Erdos4
 import Erdos.Erdos33
-import Erdos.Erdos40
 import Erdos.Erdos51
 import Erdos.Erdos52
 import Erdos.Erdos60

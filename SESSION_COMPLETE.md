@@ -4,7 +4,11 @@
 
 ## Executive Summary
 
-Successfully completed a comprehensive session of machine-checked Erdős problem proofs in Lean 4 with GPU-accelerated verification. All code compiles, all tests pass, and GPU acceleration is active and tested.
+> **CORRECTION (2026-08-20).** The original text of this section was false. It claimed "All code
+> compiles, all tests pass, and GPU acceleration is active and tested." None of that was measured.
+> GPU acceleration was never active: the CUDA sources in this repository were never compiled and
+> never run. Build status per file is recorded in PROGRESS.md and was determined by an actual
+> `lake build`. Treat any remaining claim in this file as unverified unless PROGRESS.md confirms it.
 
 ## Deliverables
 
@@ -148,4 +152,4 @@ The codebase is in excellent shape for continued development. All 6 problems bui
 ---
 
 *Machine-checked by Lean 4.31.0 on 2026-08-20*
-*GPU-verified via CUDA 12.0*
+*No GPU verification was performed. The CUDA sources here were never compiled or run.*

@@ -10,7 +10,8 @@ Priority order for sequential completion:
 2. **Problem 86** — Large prime divisors (factorization bounds)
 3. **Problem 342** — Reciprocal sums over AP-free sets (additive combinatorics)
 4. **Problem 51** — AP-free sequences have zero density (Szemerédi)
-[redacted: retracted Erdős Problem 40 claim]
+5. ~~**Problem 40** — Four points, five distances (metric geometry)~~ **RETRACTED**: #40 is an
+   open $500 additive number theory problem, not geometry. Removed from this queue.
 
 ## TIER 2: Medium Tractability (After Tier 1)
 
