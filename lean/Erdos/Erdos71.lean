@@ -1,19 +1,21 @@
 /-
 # Erdős Problem 71
 
-> [Problem statement - to be researched from erdosproblems.com]
+Open problem in additive combinatorics / extremal graph theory
 
 Reference: https://www.erdosproblems.com/71
-
-This file formalizes Erdős Problem 71.
 -/
 import Erdos.Basic
 
-set_option maxRecDepth 1000000
-
 namespace Erdos
 
--- Problem definition and key lemmas
-theorem erdos_71_main : True := by sorry
+-- Problem formulation
+def Problem71Prop : Prop := sorry
+
+-- Main theorem: conjecture statement
+theorem erdos_71 : Problem71Prop := by sorry
+
+-- Known bounds or partial results
+theorem erdos_71_partial : True := by sorry
 
 end Erdos

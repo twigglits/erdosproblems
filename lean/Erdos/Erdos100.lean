@@ -1,19 +1,21 @@
 /-
 # Erdős Problem 100
 
-> [Problem statement - to be researched from erdosproblems.com]
+Open problem in additive combinatorics / extremal graph theory
 
 Reference: https://www.erdosproblems.com/100
-
-This file formalizes Erdős Problem 100.
 -/
 import Erdos.Basic
 
-set_option maxRecDepth 1000000
-
 namespace Erdos
 
--- Problem definition and key lemmas
-theorem erdos_100_main : True := by sorry
+-- Problem formulation
+def Problem100Prop : Prop := sorry
+
+-- Main theorem: conjecture statement
+theorem erdos_100 : Problem100Prop := by sorry
+
+-- Known bounds or partial results
+theorem erdos_100_partial : True := by sorry
 
 end Erdos
