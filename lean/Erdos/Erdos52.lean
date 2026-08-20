@@ -1,7 +1,7 @@
 /-
 # Erdős Problem 52
 
-> [Problem statement to be researched]
+> [Problem statement - to be researched from erdosproblems.com]
 
 Reference: https://www.erdosproblems.com/52
 
@@ -13,7 +13,7 @@ set_option maxRecDepth 1000000
 
 namespace Erdos
 
--- Problem definition
-theorem erdos_ : True := by sorry
+-- Problem definition and key lemmas
+theorem erdos_52_main : True := by sorry
 
 end Erdos
