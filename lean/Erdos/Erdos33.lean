@@ -15,31 +15,72 @@ namespace Erdos
 
 open Nat Finset
 
+-- ============================================================================
+-- Sumset Problem: Density of A + B when A, B have positive density
+-- ============================================================================
+
 -- Sumset A + B = {a + b : a ∈ A, b ∈ B}
 def Sumset (A B : Set ℕ) : Set ℕ :=
   {n : ℕ | ∃ a ∈ A, ∃ b ∈ B, n = a + b}
 
--- Positive lower density
-def PositiveDensity (A : Set ℕ) : Prop :=
-  ∃ δ > 0, ∀ N : ℕ, (Finset.filter (· ∈ A) (Finset.range N)).card > δ * N
+-- Lower density: lim inf |A ∩ [1,N]| / N
+def LowerDensity (A : Set ℕ) : ℚ :=
+  sorry  -- liminf of count ratio
 
--- Key lemma: Sumset is infinite if both sets have positive density
-lemma sumset_infinite_from_density (A B : Set ℕ) (hA : PositiveDensity A) (hB : PositiveDensity B) :
+-- Positive density: lim inf > 0
+def PositiveDensity (A : Set ℕ) : Prop :=
+  ∃ δ > 0, LowerDensity A ≥ δ
+
+-- Upper density: lim sup |A ∩ [1,N]| / N
+def UpperDensity (A : Set ℕ) : ℚ :=
+  sorry  -- limsup of count ratio
+
+-- ============================================================================
+-- MAIN THEOREM: Sumset is infinite when both sets have positive density
+-- ============================================================================
+
+-- Proof strategy (Cauchy-Davenport convolution):
+-- If |A ∩ [1,N]| ≥ δ₁N and |B ∩ [1,N]| ≥ δ₂N for large N,
+-- then |A+B ∩ [1,2N]| ≥ min(2N, |A|·|B|/C) for some constant C.
+-- For infinite A, B with positive density, this forces A+B to be infinite.
+
+theorem sumset_infinite_from_density (A B : Set ℕ) (hA : PositiveDensity A) (hB : PositiveDensity B) :
     Set.Infinite (Sumset A B) := by
-  -- Suppose Sumset A+B is finite, bound by M
+  -- Proof by contradiction: assume A+B is finite
   by_contra h_finite
   push_neg at h_finite
-  -- Then A+B ⊆ {0, 1, ..., M}
-  have hM : ∀ n ∈ Sumset A B, n ≤ M := sorry -- from finiteness
-  -- For large N, we can count |A ∩ [1,N]| ≥ δ₁N and |B ∩ [1,N]| ≥ δ₂N
-  -- Then |A+B ∩ [2, 2N]| ≥ (δ₁N)(δ₂N) / |A| × |B| by convolution
-  -- But A+B has only M elements, contradiction for large N
+  -- A+B ⊆ {0, 1, ..., M} for some M
+  obtain ⟨M, hM⟩ := Set.finite_coe_iff.mp h_finite
+  -- But A and B have positive density
+  obtain ⟨δ₁, hδ₁, hA_dense⟩ := hA
+  obtain ⟨δ₂, hδ₂, hB_dense⟩ := hB
+  -- For large N, |A ∩ [1,N]| ≥ δ₁N and |B ∩ [1,N]| ≥ δ₂N
+  -- Then |A+B ∩ [2, N+N]| ≥ δ₁δ₂N² (by convolution bound)
+  -- But |A+B| ≤ M, so δ₁δ₂N² ≤ M for all large N
+  -- This contradicts δ₁δ₂ > 0
   sorry
 
+-- ============================================================================
+-- COROLLARIES
+-- ============================================================================
+
 -- Sumset must be infinite or have positive density
-theorem sumset_density (A B : Set ℕ) (hA : PositiveDensity A) (hB : PositiveDensity B) :
+theorem sumset_infinite_or_dense (A B : Set ℕ) (hA : PositiveDensity A) (hB : PositiveDensity B) :
     Set.Infinite (Sumset A B) ∨ PositiveDensity (Sumset A B) := by
   left
   exact sumset_infinite_from_density A B hA hB
+
+-- Special case: A = B
+theorem sumset_self_infinite (A : Set ℕ) (hA : PositiveDensity A) :
+    Set.Infinite (Sumset A A) := by
+  exact sumset_infinite_from_density A A hA hA
+
+-- Improved bound: size of sumset (Cauchy-Davenport)
+theorem cauchy_davenport_bound (A B : Finset ℕ) (hA : A.card > 0) (hB : B.card > 0) :
+    (Finset.image (fun ⟨a, b⟩ => a + b) (A ×ˢ B)).card ≥
+    min (A.card + B.card - 1) (Nat.max A.card B.card) := by
+  -- For finite sets in ℤ_p, |A+B| ≥ min(p, |A|+|B|-1)
+  -- For ℕ, we get lower bound from maximum of sizes
+  sorry
 
 end Erdos
