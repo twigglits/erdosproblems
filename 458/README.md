@@ -97,7 +97,40 @@ cc -O2 -o verify458 verify458.c -lm
 
 ### Result
 
-RESULTS_PLACEHOLDER
+```
+$ time ./verify458 10000000000000000000
+X = 10000000000000000000 ; prime powers with exponent >= 3: 166659
+sqrt(X) = 3162277660 ; base primes: 5703
+prime squares scanned: 151876932
+  multi-power gap p_k=7     product=6   ratio=0.8571  powers: 8(base 2) 9(base 3)
+  multi-power gap p_k=23    product=15  ratio=0.6522  powers: 25(base 5) 27(base 3)
+  multi-power gap p_k=113   product=55  ratio=0.4867  powers: 121(base 11) 125(base 5)
+  multi-power gap p_k=2179  product=39  ratio=0.0179  powers: 2187(base 3) 2197(base 13)
+  multi-power gap p_k=32749 product=362 ratio=0.0111  powers: 32761(base 181) 32768(base 2)
+X                      = 10000000000000000000
+prime gaps with a power= 152043586
+gaps with 2+ powers    = 5
+counterexamples        = 0
+worst ratio prod/p_k   = 0.857143  (p_k = 7, product = 6)
+
+real    45m
+```
+
+Read off the run:
+
+* **No counterexample below `10^19`.**  Every prime gap that lies entirely below `10^19`
+  satisfies the inequality.
+* `151,876,932` prime squares were walked.  That is `π(3162277660)`, and it sits exactly where
+  the known values `π(3·10^9) = 144449537` and `π(4·10^9) = 189961812` bracket it.
+* `152,043,586` gaps hold at least one prime power — the count of terms of
+  [A053607](https://oeis.org/A053607) below `10^19`.
+* Only **five** gaps hold two, and **none holds three**.  So below `10^19` the criterion never
+  even reaches the case that `erdos458_of_card_le_two` leaves open.
+* The worst ratio anywhere in the range is the very first one, `6/7 ≈ 0.857`, at `k = 3`.  The
+  margin only grows after that.
+
+Intermediate runs agree: `10^13` (2.7 s), `10^16` (96 s, `5761455 = π(10^8)` prime squares) and
+`10^19` all report the same five gaps and the same worst ratio.
 
 ### The exceptional gaps
 

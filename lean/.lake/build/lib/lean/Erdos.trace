@@ -75,8 +75,8 @@
         ["Erdos.Erdos727 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos727:importAllArts", "49c58c1916a9fa3f"],
         ["Erdos.Erdos458 transitive imports (legacy)", "ce62aa4b4848c2d4"],
-        ["Erdos.Erdos458:importAllArts", "031cd3a67d44f02a"],
-        ["Erdos.Audit transitive imports (legacy)", "cfdba82dd42bc8a6"],
+        ["Erdos.Erdos458:importAllArts", "44a4b24a4c475516"],
+        ["Erdos.Audit transitive imports (legacy)", "fa5e366b745344cf"],
         ["Erdos.Audit:importAllArts", "da43f1033e757b0d"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
@@ -96,4 +96,4 @@
   ["Module.name: Erdos", "8af4516da5eca5f8"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "889e0e1799af6dae"}
+ "depHash": "b7178ec8c864fc41"}

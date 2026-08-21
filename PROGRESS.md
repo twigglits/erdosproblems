@@ -13,8 +13,26 @@ is machine-checked.  23 theorems, zero `sorry`, zero `native_decide`, and every 
 rests on `[propext, Classical.choice, Quot.sound]` only.  See `458/README.md` for the full
 account and `ATTRIBUTION_AUDIT.md` for the state of the rest of the library.
 
-The problem is **not solved**.  What is proved is an exact criterion plus the two cases that
-the criterion settles.
+**Reduction.**  No prime lies inside a gap, so `[1..p_{k+1}-1]` and `[1..p_k]` use the same
+primes and differ only in exponents.  Bertrand's postulate stops any prime from contributing
+twice.  Hence
+
+> Erdős 458 at index `k` ⟺ the product of the distinct primes with a power inside
+> `(p_k, p_{k+1})` is below `p_k`.
+
+**Proved from that criterion (unconditional):** the problem holds at every gap with at most one
+prime power; holds at every gap with two unless *both are squares of primes*; fails when a gap
+holds two prime squares; and two prime squares force a gap longer than `2√(p_k)`, so a
+Legendre-strength gap bound settles the case.
+
+**Searched:** every prime power below `10^19`, 45 minutes, 151,876,932 prime squares.  Exactly
+five gaps hold two prime powers (`p_k = 7, 23, 113, 2179, 32749` — OEIS A053706), none holds
+three, none holds two prime *squares*, and there is no counterexample.  An independent program
+using the opposite algorithm agrees over `[2, 10^11]`, walking 4,118,054,812 gaps
+(`+1 = π(10^11)`).
+
+The problem is **not solved**.  What is proved is an exact criterion plus the cases that the
+criterion settles.
 
 ### 2. Attribution audit — most of the library is mislabelled
 
