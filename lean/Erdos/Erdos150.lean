@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 150, but the question stated below is NOT that problem.
+
+  Erdős Problem 150 actually asks: minimal cuts of a graph
+  This file instead studies:       Ramsey colourings and monochromatic cliques
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 150.
+-/
+/-
 # Erdős Problem 150
 
 > On colorings of complete graphs and monochromatic cliques

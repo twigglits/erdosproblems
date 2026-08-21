@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 100, but the question stated below is NOT that problem.
+
+  Erdős Problem 100 actually asks: geometry/distances: is the diameter of A at least Cn?
+  This file instead studies:       equal row and column pairs in a 0-1 matrix
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 100.
+-/
+/-
 # Erdős Problem 100
 
 > For an n×n 0-1 matrix with m ones, how many equal row pairs and column pairs must exist?

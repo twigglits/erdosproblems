@@ -1,22 +1,22 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["1d81d8d991b87032.olean"],
+ {"o": ["4c974aaa26a1444d.olean"],
   "m": false,
-  "i": "7093a495e0bcbbff.ilean",
+  "i": "9882fa496ca43057.ilean",
   "c": "71eae040a86e31ed.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Cli/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/batteries/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Qq/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/aesop/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/importGraph/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/plausible/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/mathlib/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean /home/jeannaude/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/jeannaude/Documents/erdosproblems/lean/Erdos/Erdos162.lean -o /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Erdos162.olean -i /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Erdos162.ilean -c /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Erdos162.c --setup /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Erdos162.setup.json --json",
    "level": "trace"},
   {"message":
-   "Erdos/Erdos162.lean:24:5: Variable name `hab` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "Erdos/Erdos162.lean:35:5: Variable name `hab` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"},
   {"message":
-   "Erdos/Erdos162.lean:24:19: Variable name `hbc` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "Erdos/Erdos162.lean:35:19: Variable name `hbc` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"},
   {"message":
-   "Erdos/Erdos162.lean:24:33: Variable name `hcd` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "Erdos/Erdos162.lean:35:33: Variable name `hcd` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"}],
  "inputs":
  [["Erdos.Erdos162:deps",
@@ -33,7 +33,7 @@
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
   ["/home/jeannaude/Documents/erdosproblems/lean/Erdos/Erdos162.lean",
-   "706d27367b36f01e"],
+   "66b4575144cfb66c"],
   ["options",
    [["-DmaxSynthPendingDepth=3", "c78e353d34de85d4"],
     ["-Dweak.linter.mathlibStandardSet=false", "28605bbdbbe35f32"],
@@ -43,4 +43,4 @@
   ["Module.name: Erdos.Erdos162", "ad3f601de077e20a"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "60edfe792711e4d3"}
+ "depHash": "e4d0a877aba58126"}

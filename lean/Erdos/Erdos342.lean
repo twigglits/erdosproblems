@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 342, but the question stated below is NOT that problem.
+
+  Erdős Problem 342 actually asks: Ulam sequences: unique representation as a(i)+a(j)
+  This file instead studies:       maximum reciprocal sum of an AP-free set
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 342.
+-/
+/-
 # Erdős Problem 342
 
 > For a set A of integers, let σ(A) = Σ_{a∈A} 1/a. What is the maximum σ(A) for sets with no 3-term arithmetic progression?

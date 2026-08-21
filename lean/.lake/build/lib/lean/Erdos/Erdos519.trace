@@ -1,16 +1,14 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["ca4652208fbfdb53.olean"],
+ {"o": ["2f133efa854ab200.olean"],
   "m": false,
-  "i": "00515e35519f3b7b.ilean",
+  "i": "a41b3cdf989e42de.ilean",
   "c": "505eeb1007aac8e7.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Cli/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/batteries/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Qq/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/aesop/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/importGraph/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/plausible/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/mathlib/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean /home/jeannaude/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/jeannaude/Documents/erdosproblems/lean/Erdos/Erdos519.lean -o /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Erdos519.olean -i /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Erdos519.ilean -c /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Erdos519.c --setup /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Erdos519.setup.json --json",
-   "level": "trace"},
-  {"message": "Erdos/Erdos519.lean:30:8: declaration uses `sorry`",
-   "level": "warning"}],
+   "level": "trace"}],
  "inputs":
  [["Erdos.Erdos519:deps",
    [["deps",
@@ -26,7 +24,7 @@
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
   ["/home/jeannaude/Documents/erdosproblems/lean/Erdos/Erdos519.lean",
-   "82f0df32e5230a6a"],
+   "6aabc92ebf1bc1eb"],
   ["options",
    [["-DmaxSynthPendingDepth=3", "c78e353d34de85d4"],
     ["-Dweak.linter.mathlibStandardSet=false", "28605bbdbbe35f32"],
@@ -36,4 +34,4 @@
   ["Module.name: Erdos.Erdos519", "3f0efb282488e3d3"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "84c79e7d29fb42e3"}
+ "depHash": "f4c6c7158f5e2cb7"}

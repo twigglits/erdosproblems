@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 197, but the question stated below is NOT that problem.
+
+  Erdős Problem 197 actually asks: can N be split into two sets each permutable to avoid monotone 3-term APs?
+  This file instead studies:       chromatic number of euclidean distance graphs
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 197.
+-/
+/-
 # Erdős Problem 197
 
 > On the chromatic number of distance graphs in euclidean space

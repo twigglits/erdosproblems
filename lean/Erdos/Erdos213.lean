@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 213, but the question stated below is NOT that problem.
+
+  Erdős Problem 213 actually asks: n points in R^2, no 3 on a line, no 4 on a circle, all distances integers
+  This file instead studies:       maximum of sigma(n)/n^eps
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 213.
+-/
+/-
 # Erdős Problem 213
 
 > What is the maximum value of σ(n)/n^ε where σ(n) is sum of divisors?

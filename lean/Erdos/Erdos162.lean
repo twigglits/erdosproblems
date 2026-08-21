@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 162, but the question stated below is NOT that problem.
+
+  Erdős Problem 162 actually asks: F(n,alpha) for 2-colourings of K_n, discrepancy of induced subgraphs
+  This file instead studies:       a<b<c<d positive integers
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 162.
+-/
+/-
 # Erdős Problem 162
 
 > If a, b, c, d are positive integers with a < b < c < d,

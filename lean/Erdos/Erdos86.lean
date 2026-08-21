@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 86, but the question stated below is NOT that problem.
+
+  Erdős Problem 86 actually asks: hypercube: every subgraph of Q_n with >= (1/2+o(1)) n 2^{n-1} edges contains a C_4 ($100)
+  This file instead studies:       infinitely many n with a prime divisor p > sqrt(n)
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 86.
+-/
+/-
 # Erdős Problem 86
 
 > Are there infinitely many integers n such that n has a prime divisor p > √n?

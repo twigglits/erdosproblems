@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 72, but the question stated below is NOT that problem.
+
+  Erdős Problem 72 actually asks: graph theory, cycles ($100, proved) - statement not the one in this file
+  This file instead studies:       maximum size of an AP-free subset of {1,...,N}
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 72.
+-/
+/-
 # Erdős Problem 72
 
 > For a sequence 1 ≤ a₁ < a₂ < ... < aₙ ≤ N with no 3-term AP, what is the maximum n?

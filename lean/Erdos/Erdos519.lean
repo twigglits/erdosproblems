@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 519, but the question stated below is NOT that problem.
+
+  Erdős Problem 519 actually asks: Turan power sums: must max_k |sum z_i^k| > c for z_1=1?
+  This file instead studies:       chromatic polynomials and greedy colouring
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 519.
+-/
+/-
 # Erdős Problem 519
 
 > Bounds on chromatic polynomials and coloring algorithms.

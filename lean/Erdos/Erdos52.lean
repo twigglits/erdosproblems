@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 52, but the question stated below is NOT that problem.
+
+  Erdős Problem 52 actually asks: sum-product: max(|A+A|,|AA|) >> |A|^{2-eps} ($250)
+  This file instead studies:       maximum number of unit distances among n points
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 52.
+-/
+/-
 # Erdős Problem 52
 
 > Consider n points in the plane. What is the maximum number of unit distances determined?

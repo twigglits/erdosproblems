@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 116, but the question stated below is NOT that problem.
+
+  Erdős Problem 116 actually asks: polynomials: for p(z)=prod(z-z_i) with |z_i|<=1, is |{z:|p(z)|<1}| > n - O(1)?
+  This file instead studies:       Borsuk conjecture on partitions of bounded sets
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 116.
+-/
+/-
 # Erdős Problem 116
 
 > Borsuk conjecture: Can every bounded set in R^d be partitioned into d+1 sets of smaller diameter?

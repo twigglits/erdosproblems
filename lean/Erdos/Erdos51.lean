@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 51, but the question stated below is NOT that problem.
+
+  Erdős Problem 51 actually asks: totients: an infinite A with every a in A a totient, yet n_a/a -> infinity
+  This file instead studies:       AP-free sequences have density zero
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 51.
+-/
+/-
 # Erdős Problem 51
 
 > For a sequence of integers a_1 < a_2 < ... with no 3-term arithmetic progression, is the density zero?

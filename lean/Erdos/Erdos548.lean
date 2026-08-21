@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 548, but the question stated below is NOT that problem.
+
+  Erdős Problem 548 actually asks: Erdos-Sos: every graph with (k-1)n/2+1 edges contains every tree on k+1 vertices
+  This file instead studies:       chromatic number relations
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 548.
+-/
+/-
 # Erdős Problem 548
 
 > For a graph G with chromatic number χ(G), is there a connection between

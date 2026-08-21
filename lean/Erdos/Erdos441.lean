@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 441, but the question stated below is NOT that problem.
+
+  Erdős Problem 441 actually asks: largest A in {1,...,N} with lcm(a,b) <= N for all a,b in A
+  This file instead studies:       integers appearing in solutions (x,y,z)
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 441.
+-/
+/-
 # Erdős Problem 441
 
 > Is it true that every integer n > 1 appears in some solution (x, y, z) to the

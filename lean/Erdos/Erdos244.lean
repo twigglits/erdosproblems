@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 244, but the question stated below is NOT that problem.
+
+  Erdős Problem 244 actually asks: does {p + floor(C^k)} have positive density?
+  This file instead studies:       covering the plane with congruent convex copies
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 244.
+-/
+/-
 # Erdős Problem 244
 
 > On covering the plane with congruent copies of a convex region

@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 60, but the question stated below is NOT that problem.
+
+  Erdős Problem 60 actually asks: every graph with more than ex(n;C_4) edges has >> n^{1/2} copies of C_4
+  This file instead studies:       distinct differences among a_1<...<a_n <= 2n
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 60.
+-/
+/-
 # Erdős Problem 60
 
 > For integers 1 ≤ a₁ < a₂ < ... < aₙ ≤ 2n, how many distinct differences aᵢ - aⱼ must occur?

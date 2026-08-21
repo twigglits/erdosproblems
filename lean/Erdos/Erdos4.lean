@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 4, but the question stated below is NOT that problem.
+
+  Erdős Problem 4 actually asks: prime gaps: for any C>0 are there infinitely many n with p_{n+1}-p_n > C log n loglog n log^4 n/(log^3 n)^2 (Erdos-Rankin; $10000; proved by Ford-Green-Konyagin-Tao and by Maynard)
+  This file instead studies:       every (n+1)-subset of {1,...,2n} contains a coprime pair
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 4.
+-/
+/-
 # Erdős Problem 4
 
 > Is it true that every set of n+1 distinct positive integers from {1, 2, ..., 2n} contains a pair with gcd 1?

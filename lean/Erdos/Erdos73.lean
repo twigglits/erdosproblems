@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 73, but the question stated below is NOT that problem.
+
+  Erdős Problem 73 actually asks: if every subgraph H has an independent set of size >= (n-k)/2, must G be bipartite plus O_k(1) vertices?
+  This file instead studies:       chi(G) * alpha(G) >= n
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 73.
+-/
+/-
 # Erdős Problem 73
 
 > For a graph G, is χ(G) · α(G) ≥ n where χ is chromatic number and α is independence number?

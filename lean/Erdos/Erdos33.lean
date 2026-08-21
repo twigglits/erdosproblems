@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 33, but the question stated below is NOT that problem.
+
+  Erdős Problem 33 actually asks: additive basis: A subseteq N with every integer of the form n^2+a for some a in A
+  This file instead studies:       A+B for sets of positive density
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 33.
+-/
+/-
 # Erdős Problem 33
 
 > If A and B are infinite sets of positive integers with positive density, must A + B be infinite or dense?

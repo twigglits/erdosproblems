@@ -1,80 +1,67 @@
-# Sequential Work Priority Queue
+# Work queue
 
-**RULE**: Work problems ONE AT A TIME. Never parallel. Commit each before moving to next.
+**RULE**: one problem at a time.  Never parallel.  Commit each before starting the next.
 
-## TIER 1: High Tractability (Start Here)
+The old queue was built on the file headers in `lean/Erdos/`.  Those headers name the wrong
+Erdős problems (see `ATTRIBUTION_AUDIT.md`), so the old queue pointed at problems the files do
+not study.  It is replaced below.
 
-Priority order for sequential completion:
+## Ground truth
 
-1. **Problem 4** — Coprimality in dense subsets (simple pigeonhole structure)
-2. **Problem 86** — Large prime divisors (factorization bounds)
-3. **Problem 342** — Reciprocal sums over AP-free sets (additive combinatorics)
-4. **Problem 51** — AP-free sequences have zero density (Szemerédi)
-5. ~~**Problem 40** — Four points, five distances (metric geometry)~~ **RETRACTED**: #40 is an
-   open $500 additive number theory problem, not geometry. Removed from this queue.
+Take every problem number, statement and status from:
 
-## TIER 2: Medium Tractability (After Tier 1)
+* `https://github.com/teorth/erdosproblems` — `data/problems.yaml`, the community database.
+  It carries the status of all 1217 problems.
+* `https://github.com/google-deepmind/formal-conjectures` — Lean statements for 611 of them.
+* `https://www.erdosproblems.com/<n>` — the problem page and its literature notes.
 
-6. **Problem 69** — Unit distances in plane (extremal geometry)
-7. **Problem 73** — Chromatic × independence number (graph theory)
-8. **Problem 195** — Monochromatic paths in colorings (Ramsey theory)
-9. **Problem 116** — Diameter bounds (Borsuk conjecture)
-10. **Problem 33** — Sumsets with positive density (additive combinatorics)
+Never take a statement from a file header in this repository without checking it there first.
 
-## TIER 3: Formalization-Heavy (After Tier 2)
+## Done
 
-11. **Problem 52** — [To be researched]
-12. **Problem 60** — [To be researched]
-13. **Problem 71** — [To be researched]
-14. **Problem 72** — [To be researched]
-15. **Problem 100** — [To be researched]
-16. **Problem 135** — [To be researched]
-17. **Problem 150** — [To be researched]
-18. **Problem 176** — [To be researched]
-19. **Problem 197** — [To be researched]
-20. **Problem 244** — [To be researched]
-21. **Problem 632** — Largest prime factor growth (number theory)
+| # | What | Where |
+|---|---|---|
+| 458 | Exact reduction to prime powers in prime gaps; settled for every gap holding at most two of them; search to `10^19` | `lean/Erdos/Erdos458.lean`, `458/` |
+| 389 | Equivalent formulations and obstructions | `lean/Erdos/Erdos389.lean` |
+| 396 | Large-prime obstruction | `lean/Erdos/Erdos396.lean` |
+| 727 | Smoothness obstruction | `lean/Erdos/Erdos727.lean` |
 
-## Already Verified (6 problems)
+## Next — repair before extending
 
-- Problem 162 ✓
-- Problem 389 ✓
-- Problem 396 ✓
-- Problem 441 ✓
-- Problem 548 ✓
-- Problem 727 ✓
+1. **Decide the fate of each mislabelled file.**  For every row marked MISLABELLED in
+   `ATTRIBUTION_AUDIT.md`, choose one:
+   * keep the mathematics, drop the number, rename the file; or
+   * keep the number, replace the contents with the real statement from formal-conjectures.
+2. **Remove the `sorry` definitions.**  A `def f : ℕ := sorry` makes every theorem about `f`
+   empty.  These exist in the files for 86, 100, 176, 197 and others.  Fix the definitions
+   before touching the theorems.
 
-## In Progress / Partially Complete (3 problems)
+## Then — new targets
 
-- Problem 213 (framework, needs sorry elimination)
-- Problem 250 (framework, needs sorry elimination)
-- Problem 519 (framework, needs sorry elimination)
+Pick from the database by status, not by guesswork.  The productive classes are:
 
----
+* **`falsifiable` (27 problems)** — open, but a finite search would disprove them.  A search is
+  real evidence, and a hit would be a solution.  458 came from this class.
+* **`decidable` (9)** — open, but reduced to a finite computation: 19, 475, 506, 547, 551, 556,
+  580, 742, 848.  Check whether the finite bound is effective before starting; for 848 and 742
+  it is not.
+* **`verifiable` (7)** — open, provable by a finite computation if true: 7, 307, 364, 366, 647,
+  672, 835.
+* **solved but not yet formalised (63)** — a complete Lean proof of one of these is a
+  contribution to formal-conjectures.  The short ones are 48, 248, 822, 109, 277, 587, 1214.
 
-## Work Flow
-
-For each problem in priority order:
+## Workflow per problem
 
 ```
-SELECT problem from TIER 1
+CHECK the number against teorth/erdosproblems and formal-conjectures
   ↓
-RESEARCH: Fetch arXiv/MathOverflow papers, identify equivalent formulations
+COPY the formal statement from formal-conjectures if one exists
   ↓
-FORMALIZE: Write Lean definitions, prove key lemmas
+REDUCE: look for an exact equivalent that is easier to attack
   ↓
-IF proof complete:
-  → Machine verify (lake build)
-  → Commit to git
-  → Move to NEXT problem
-ELSE IF partial progress:
-  → Document obstruction theorems
-  → Establish verification bounds
-  → Commit intermediate result
-  → RESEARCH deeper or MOVE to NEXT
-ELSE IF stuck:
-  → Document failure mode
-  → Move to NEXT problem (not dead end)
+FORMALISE the reduction in Lean, zero `sorry`, zero `native_decide`
+  ↓
+COMPUTE: search the reduced criterion as far as the hardware allows
+  ↓
+REPORT what is proved, what is searched, and what is still open — separately
 ```
-
-**STATUS**: About to start Problem 4 (coprimality in dense subsets).

@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 632, but the question stated below is NOT that problem.
+
+  Erdős Problem 632 actually asks: if G is (a,b)-choosable then G is (am,bm)-choosable
+  This file instead studies:       regions determined by hyperplanes
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 632.
+-/
+/-
 # Erdős Problem 632
 
 > On the number of regions determined by lines/hyperplanes in ℝ^d

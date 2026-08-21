@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 195, but the question stated below is NOT that problem.
+
+  Erdős Problem 195 actually asks: largest k with a monotone k-term AP in every permutation of Z
+  This file instead studies:       monochromatic paths in edge colourings
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 195.
+-/
+/-
 # Erdős Problem 195
 
 > Edge-coloring Ramsey: monochromatic paths in n-colorings of complete graphs

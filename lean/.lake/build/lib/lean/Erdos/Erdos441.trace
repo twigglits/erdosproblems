@@ -1,9 +1,9 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["47f43dd345c7958a.olean"],
+ {"o": ["8e07f7c4125e4589.olean"],
   "m": false,
-  "i": "95c166af1c88dc0e.ilean",
+  "i": "3ed331fed31c62f7.ilean",
   "c": "8a702444cd18d9b8.c"},
  "log":
  [{"message":
@@ -24,7 +24,7 @@
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
   ["/home/jeannaude/Documents/erdosproblems/lean/Erdos/Erdos441.lean",
-   "1acb4459b5e0b3f4"],
+   "51c4d6253313c3d2"],
   ["options",
    [["-DmaxSynthPendingDepth=3", "c78e353d34de85d4"],
     ["-Dweak.linter.mathlibStandardSet=false", "28605bbdbbe35f32"],
@@ -34,4 +34,4 @@
   ["Module.name: Erdos.Erdos441", "45a1b37a3c4c6667"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "d3ad362c57a03eb5"}
+ "depHash": "d0dd2db93c2f40fe"}

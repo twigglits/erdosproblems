@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 176, but the question stated below is NOT that problem.
+
+  Erdős Problem 176 actually asks: N(k,l): discrepancy of +-1 colourings on k-term arithmetic progressions
+  This file instead studies:       size of sum-free sets in abelian groups
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 176.
+-/
+/-
 # Erdős Problem 176
 
 > On the size of sum-free sets in abelian groups

@@ -1,5 +1,39 @@
 # Erdős Problems: Machine-Checked Proofs in Lean 4
 
+## Session update, 2026-08-21
+
+Two things happened this session.
+
+### 1. Erdős Problem 458 — new work, `lean/Erdos/Erdos458.lean`
+
+> Is `lcm(1,...,p_{k+1}-1) < p_k * lcm(1,...,p_k)` for every `k`?  (open, tagged *falsifiable*)
+
+The problem is now reduced to a statement about prime powers in prime gaps, and the reduction
+is machine-checked.  23 theorems, zero `sorry`, zero `native_decide`, and every one of them
+rests on `[propext, Classical.choice, Quot.sound]` only.  See `458/README.md` for the full
+account and `ATTRIBUTION_AUDIT.md` for the state of the rest of the library.
+
+The problem is **not solved**.  What is proved is an exact criterion plus the two cases that
+the criterion settles.
+
+### 2. Attribution audit — most of the library is mislabelled
+
+Every Lean file was checked against the community database `teorth/erdosproblems` and the
+statements in `google-deepmind/formal-conjectures`.  **Only 5 of 30 files carry the right
+Erdős problem number.**  The other 25 state a real mathematical question under a number that
+belongs to a different question.  Problem 40 was retracted on 2026-08-20 for exactly this
+reason; the same defect runs through the library.
+
+Correctly numbered and fully proved: **389, 396, 727**, and now **458**.
+Correctly numbered: **135** (contains `sorry`).
+
+The earlier claim that 162, 441, 519 and 548 were "verified" is withdrawn: those four files
+prove statements that are not Erdős 162, 441, 519 or 548.  Each mislabelled file now carries a
+warning banner.  Full table in `ATTRIBUTION_AUDIT.md`.
+
+---
+
+
 ## Project Status: August 20, 2026 (Sequential Work Initialized)
 
 ### Overview

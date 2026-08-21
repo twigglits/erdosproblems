@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 250, but the question stated below is NOT that problem.
+
+  Erdős Problem 250 actually asks: irrationality of sum sigma(n)/2^n (proved by Nesterenko)
+  This file instead studies:       2^n-1 with three distinct prime divisors
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 250.
+-/
+/-
 # Erdős Problem 250
 
 > Are there infinitely many integers n such that 2^n - 1 has at least three

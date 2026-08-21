@@ -13,22 +13,22 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumber(lean_object*);
-LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumber___boxed(lean_object*);
+LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumberComplete(lean_object*);
+LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumberComplete___boxed(lean_object*);
 LEAN_EXPORT lean_object* lp_erdos_Erdos_MaxClique(lean_object*);
 LEAN_EXPORT lean_object* lp_erdos_Erdos_MaxClique___boxed(lean_object*);
-LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumber(lean_object* v_n_1_){
+LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumberComplete(lean_object* v_n_1_){
 _start:
 {
 lean_inc(v_n_1_);
 return v_n_1_;
 }
 }
-LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumber___boxed(lean_object* v_n_2_){
+LEAN_EXPORT lean_object* lp_erdos_Erdos_ChromaticNumberComplete___boxed(lean_object* v_n_2_){
 _start:
 {
 lean_object* v_res_3_; 
-v_res_3_ = lp_erdos_Erdos_ChromaticNumber(v_n_2_);
+v_res_3_ = lp_erdos_Erdos_ChromaticNumberComplete(v_n_2_);
 lean_dec(v_n_2_);
 return v_res_3_;
 }

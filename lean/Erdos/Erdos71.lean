@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 71, but the question stated below is NOT that problem.
+
+  Erdős Problem 71 actually asks: cycles of length in a given arithmetic progression (Erdos-Burr; proved by Bollobas)
+  This file instead studies:       maximum edges in a triangle-free graph
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 71.
+-/
+/-
 # Erdős Problem 71
 
 > What is the maximum number of edges in a triangle-free graph on n vertices?

@@ -1,4 +1,15 @@
 /-
+!!! ATTRIBUTION WARNING (added 2026-08-21) !!!
+
+This file is named for Erdős Problem 69, but the question stated below is NOT that problem.
+
+  Erdős Problem 69 actually asks: irrationality of sum_{n>=2} omega(n)/2^n
+  This file instead studies:       maximum number of unit distances among n points
+
+See ATTRIBUTION_AUDIT.md at the repository root.  Nothing proved in this file is progress on
+Erdős Problem 69.
+-/
+/-
 # Erdős Problem 69
 
 > What is the maximum number of unit distances among n points in the plane?
