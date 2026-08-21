@@ -1,0 +1,11 @@
+# Compiled search programs and their output (new files only).
+458/verify458
+458/crosscheck458
+458/*.out
+458/*.err
+cuda_verify
+
+# Lean build output.  NOTE: lean/.lake/build/ is already tracked in this repository, so this
+# rule does not take effect for it.  To stop tracking it, run once:
+#     git rm -r --cached lean/.lake
+lean/.lake/

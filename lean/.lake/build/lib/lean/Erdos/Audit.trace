@@ -156,7 +156,7 @@
         ["Erdos.Erdos727 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos727:importAllArts", "49c58c1916a9fa3f"],
         ["Erdos.Erdos458 transitive imports (legacy)", "ce62aa4b4848c2d4"],
-        ["Erdos.Erdos458:importAllArts", "e31e982a3186cdff"]]]]],
+        ["Erdos.Erdos458:importAllArts", "031cd3a67d44f02a"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -175,4 +175,4 @@
   ["Module.name: Erdos.Audit", "418d5ae0bfac2fe2"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "f22f316e7001c954"}
+ "depHash": "0fa873bf96773542"}
