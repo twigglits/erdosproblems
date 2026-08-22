@@ -1,6 +1,6 @@
 // Lean compiler output
 // Module: Erdos
-// Imports: public import Init public meta import Init public import Erdos.Basic public import Erdos.Erdos4 public import Erdos.Erdos33 public import Erdos.Erdos51 public import Erdos.Erdos52 public import Erdos.Erdos60 public import Erdos.Erdos69 public import Erdos.Erdos71 public import Erdos.Erdos72 public import Erdos.Erdos73 public import Erdos.Erdos86 public import Erdos.Erdos100 public import Erdos.Erdos116 public import Erdos.Erdos135 public import Erdos.Erdos150 public import Erdos.Erdos162 public import Erdos.Erdos176 public import Erdos.Erdos195 public import Erdos.Erdos197 public import Erdos.Erdos213 public import Erdos.Erdos244 public import Erdos.Erdos250 public import Erdos.Erdos342 public import Erdos.Erdos389 public import Erdos.Erdos396 public import Erdos.Erdos441 public import Erdos.Erdos519 public import Erdos.Erdos548 public import Erdos.Erdos632 public import Erdos.Erdos727 public import Erdos.Erdos458 public import Erdos.Audit
+// Imports: public import Init public meta import Init public import Erdos.Basic public import Erdos.Erdos4 public import Erdos.Erdos33 public import Erdos.Erdos51 public import Erdos.Erdos52 public import Erdos.Erdos60 public import Erdos.Erdos69 public import Erdos.Erdos71 public import Erdos.Erdos72 public import Erdos.Erdos73 public import Erdos.Erdos86 public import Erdos.Erdos100 public import Erdos.Erdos116 public import Erdos.Erdos135 public import Erdos.Erdos150 public import Erdos.Erdos162 public import Erdos.Erdos176 public import Erdos.Erdos195 public import Erdos.Erdos197 public import Erdos.Erdos213 public import Erdos.Erdos244 public import Erdos.Erdos250 public import Erdos.Erdos342 public import Erdos.Erdos389 public import Erdos.Erdos396 public import Erdos.Erdos441 public import Erdos.Erdos519 public import Erdos.Erdos548 public import Erdos.Erdos632 public import Erdos.Erdos727 public import Erdos.Erdos458 public import Erdos.Erdos307 public import Erdos.Audit
 #include <lean/lean.h>
 #if defined(__clang__)
 #pragma clang diagnostic ignored "-Wunused-parameter"
@@ -46,6 +46,7 @@ lean_object* initialize_erdos_Erdos_Erdos548(uint8_t builtin);
 lean_object* initialize_erdos_Erdos_Erdos632(uint8_t builtin);
 lean_object* initialize_erdos_Erdos_Erdos727(uint8_t builtin);
 lean_object* initialize_erdos_Erdos_Erdos458(uint8_t builtin);
+lean_object* initialize_erdos_Erdos_Erdos307(uint8_t builtin);
 lean_object* initialize_erdos_Erdos_Audit(uint8_t builtin);
 static bool _G_initialized = false;
 LEAN_EXPORT lean_object* initialize_erdos_Erdos(uint8_t builtin) {
@@ -149,6 +150,9 @@ res = initialize_erdos_Erdos_Erdos727(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_erdos_Erdos_Erdos458(builtin);
+if (lean_io_result_is_error(res)) return res;
+lean_dec_ref(res);
+res = initialize_erdos_Erdos_Erdos307(builtin);
 if (lean_io_result_is_error(res)) return res;
 lean_dec_ref(res);
 res = initialize_erdos_Erdos_Audit(builtin);

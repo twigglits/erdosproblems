@@ -1,6 +1,7 @@
 # Compiled search programs and their output (new files only).
 458/verify458
 458/crosscheck458
+307/search307
 458/*.out
 458/*.err
 cuda_verify

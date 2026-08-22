@@ -22,6 +22,7 @@ Never take a statement from a file header in this repository without checking it
 | # | What | Where |
 |---|---|---|
 | 458 | Exact reduction to prime powers in prime gaps; settled for every gap holding at most two of them; search to `10^19` | `lean/Erdos/Erdos458.lean`, `458/` |
+| 307 | Exact reduction to a 2-cycle of the arithmetic derivative; link to the Ufnarovski–Åhlander conjecture; `\|P ∪ Q\| ≥ 60` proved | `lean/Erdos/Erdos307.lean`, `307/` |
 | 389 | Equivalent formulations and obstructions | `lean/Erdos/Erdos389.lean` |
 | 396 | Large-prime obstruction | `lean/Erdos/Erdos396.lean` |
 | 727 | Smoothness obstruction | `lean/Erdos/Erdos727.lean` |
@@ -45,8 +46,8 @@ Pick from the database by status, not by guesswork.  The productive classes are:
 * **`decidable` (9)** — open, but reduced to a finite computation: 19, 475, 506, 547, 551, 556,
   580, 742, 848.  Check whether the finite bound is effective before starting; for 848 and 742
   it is not.
-* **`verifiable` (7)** — open, provable by a finite computation if true: 7, 307, 364, 366, 647,
-  672, 835.
+* **`verifiable` (7)** — open, provable by a finite computation if true: 7, 364, 366, 647, 672,
+  835 (307 is done, above).
 * **solved but not yet formalised (63)** — a complete Lean proof of one of these is a
   contribution to formal-conjectures.  The short ones are 48, 248, 822, 109, 277, 587, 1214.
 

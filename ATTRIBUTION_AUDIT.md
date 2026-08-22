@@ -16,7 +16,7 @@ checks every remaining file.
 A file marked MISMATCH is not wrong mathematics.  It is mislabelled.  The proof work
 inside it says nothing about the Erdős problem whose number it carries.
 
-## Result: 5 of 30 files carry the right number
+## Result: 6 of 31 files carry the right number
 
 | File | # | Verdict | The real problem | What the file claims |
 |---|---|---|---|---|
@@ -41,6 +41,7 @@ inside it says nothing about the Erdős problem whose number it carries.
 | `Erdos213.lean` | [213](https://www.erdosproblems.com/213) | **MISLABELLED** | n points in R^2, no 3 on a line, no 4 on a circle, all distances integers | maximum of sigma(n)/n^eps |
 | `Erdos244.lean` | [244](https://www.erdosproblems.com/244) | **MISLABELLED** | does {p + floor(C^k)} have positive density? | covering the plane with congruent convex copies |
 | `Erdos250.lean` | [250](https://www.erdosproblems.com/250) | **MISLABELLED** | irrationality of sum sigma(n)/2^n (proved by Nesterenko) | 2^n-1 with three distinct prime divisors |
+| `Erdos307.lean` | [307](https://www.erdosproblems.com/307) | OK | are there finite sets of primes P, Q with (sum 1/p)(sum 1/q) = 1? | same |
 | `Erdos342.lean` | [342](https://www.erdosproblems.com/342) | **MISLABELLED** | Ulam sequences: unique representation as a(i)+a(j) | maximum reciprocal sum of an AP-free set |
 | `Erdos389.lean` | [389](https://www.erdosproblems.com/389) | OK | is there always k with n(n+1)...(n+k-1) | (n+k)...(n+2k-1)? | same |
 | `Erdos396.lean` | [396](https://www.erdosproblems.com/396) | OK | is there always n with prod_{0<=i<=k}(n-i) | C(2n,n)? | same |
@@ -58,7 +59,7 @@ inside it says nothing about the Erdős problem whose number it carries.
 Lean proofs in them are still valid proofs of the statements they contain, but those
 statements are not Erdős 162, 441, 519 or 548.
 
-Correctly numbered and fully proved: **389, 396, 727**, plus **458** (added 2026-08-21).
+Correctly numbered and fully proved: **389, 396, 727**, plus **458** and **307** (both added 2026-08-21).
 
 ## Files that carry no Erdős number
 

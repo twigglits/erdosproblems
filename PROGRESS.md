@@ -34,7 +34,29 @@ using the opposite algorithm agrees over `[2, 10^11]`, walking 4,118,054,812 gap
 The problem is **not solved**.  What is proved is an exact criterion plus the cases that the
 criterion settles.
 
-### 2. Attribution audit — most of the library is mislabelled
+### 2. Erdős Problem 307 — new work, `lean/Erdos/Erdos307.lean`
+
+> Are there finite sets of primes `P`, `Q` with `1 = (Σ_{p∈P} 1/p)(Σ_{q∈Q} 1/q)`?
+> (open, tagged *verifiable*)
+
+**Reduction.**  For a set of primes `P`, `Σ 1/p = D P / prd P` is already in lowest terms,
+because `D P` (the arithmetic derivative of the squarefree number `prd P`) is coprime to
+`prd P`.  Hence, with `A = prd P` and `B = prd Q`, the equation forces `D P = B` and `D Q = A`
+— a **2-cycle of the arithmetic derivative**.  Equivalently `A² + B² = D R` for `R = P ∪ Q`,
+equivalently `D R ± 2·prd R` are both perfect squares.  15 theorems, zero `sorry`.
+
+**Consequence.**  The Ufnarovski–Åhlander conjecture (2003) says the only cycles of the
+arithmetic derivative are the fixed points `p^p`, which are not squarefree.  So that conjecture
+implies Erdős 307 has answer **no**.  The problem page does not record this link.
+
+**Computed.**  The page states `|P ∪ Q| ≥ 60`; the standard argument (`Σ ≥ 2`) gives only `59`,
+since the first 59 primes have reciprocal sum `2.00235 ≥ 2`.  Ruling out 59 is finite: exactly
+49961 sets of 59 primes have reciprocal sum at least 2, and none passes the perfect-squares
+test.  Two independent programs agree.  So `|P ∪ Q| ≥ 60` now has a proof.
+
+The problem is **not solved**.
+
+### 3. Attribution audit — most of the library is mislabelled
 
 Every Lean file was checked against the community database `teorth/erdosproblems` and the
 statements in `google-deepmind/formal-conjectures`.  **Only 5 of 30 files carry the right
@@ -42,7 +64,7 @@ Erdős problem number.**  The other 25 state a real mathematical question under 
 belongs to a different question.  Problem 40 was retracted on 2026-08-20 for exactly this
 reason; the same defect runs through the library.
 
-Correctly numbered and fully proved: **389, 396, 727**, and now **458**.
+Correctly numbered and fully proved: **389, 396, 727**, and now **458** and **307**.
 Correctly numbered: **135** (contains `sorry`).
 
 The earlier claim that 162, 441, 519 and 548 were "verified" is withdrawn: those four files

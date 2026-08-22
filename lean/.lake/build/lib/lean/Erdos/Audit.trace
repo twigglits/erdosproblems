@@ -1,148 +1,193 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["8110ba73f7a26716.olean"],
+ {"o": ["9ff0e09d88b5a840.olean"],
   "m": false,
-  "i": "c8eff144afd830bb.ilean",
-  "c": "4630339f353aea22.c"},
+  "i": "64b0a1f9f07d7dd9.ilean",
+  "c": "77ab06af474f7928.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Cli/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/batteries/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/Qq/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/aesop/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/importGraph/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/plausible/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/634/erdos634/.lake/packages/mathlib/.lake/build/lib/lean:/home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean /home/jeannaude/.elan/toolchains/leanprover--lean4---v4.31.0/bin/lean /home/jeannaude/Documents/erdosproblems/lean/Erdos/Audit.lean -o /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Audit.olean -i /home/jeannaude/Documents/erdosproblems/lean/.lake/build/lib/lean/Erdos/Audit.ilean -c /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Audit.c --setup /home/jeannaude/Documents/erdosproblems/lean/.lake/build/ir/Erdos/Audit.setup.json --json",
    "level": "trace"},
   {"message":
-   "Erdos/Audit.lean:14:0: 'Erdos.erdosStraus_iff_prod' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:15:0: 'Erdos.erdosStraus_iff_prod' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:15:0: 'Erdos.erdosStraus_iff_choose' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:16:0: 'Erdos.erdosStraus_iff_choose' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:16:0: 'Erdos.erdosStraus_iff_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:17:0: 'Erdos.erdosStraus_iff_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:17:0: 'Erdos.erdosStraus_iff_digits' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:18:0: 'Erdos.erdosStraus_iff_digits' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:18:0: 'Erdos.local_condition_iff' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:19:0: 'Erdos.local_condition_iff' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:19:0: 'Erdos.two_mul_mod_ge_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:20:0: 'Erdos.two_mul_mod_ge_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:20:0: 'Erdos.not_dvd_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:21:0: 'Erdos.not_dvd_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:21:0: 'Erdos.smooth_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:22:0: 'Erdos.smooth_of_erdosStraus' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:22:0: 'Erdos.Solutions.n1' depends on axioms: [propext]",
+   "Erdos/Audit.lean:23:0: 'Erdos.Solutions.n1' depends on axioms: [propext]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:23:0: 'Erdos.Solutions.n11' depends on axioms: [propext]",
+   "Erdos/Audit.lean:24:0: 'Erdos.Solutions.n11' depends on axioms: [propext]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:26:0: 'Erdos.factorization_centralBinom_of_lt_sq' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:27:0: 'Erdos.factorization_centralBinom_of_lt_sq' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:27:0: 'Erdos.le_two_mul_of_block396' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:28:0: 'Erdos.le_two_mul_of_block396' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:28:0: 'Erdos.smooth_of_block396' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:29:0: 'Erdos.smooth_of_block396' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:31:0: 'Erdos.le_of_egrs' depends on axioms: [propext, Quot.sound]",
+   "Erdos/Audit.lean:32:0: 'Erdos.le_of_egrs' depends on axioms: [propext, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:32:0: 'Erdos.egrs_iff_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:33:0: 'Erdos.egrs_iff_factorization' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:33:0: 'Erdos.k_le_mod_of_egrs' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:34:0: 'Erdos.k_le_mod_of_egrs' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:34:0: 'Erdos.not_dvd_of_egrs' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:35:0: 'Erdos.not_dvd_of_egrs' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:35:0: 'Erdos.sq_le_of_dvd_block' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:36:0: 'Erdos.sq_le_of_dvd_block' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:36:0: 'Erdos.Solutions.k2' depends on axioms: [propext]",
+   "Erdos/Audit.lean:37:0: 'Erdos.Solutions.k2' depends on axioms: [propext]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:37:0: 'Erdos.Solutions.k4' depends on axioms: [propext]",
+   "Erdos/Audit.lean:38:0: 'Erdos.Solutions.k4' depends on axioms: [propext]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:41:0: 'Erdos458.gapFactor_mul' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:42:0: 'Erdos458.gapFactor_mul' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:42:0: 'Erdos458.erdos458_iff' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:43:0: 'Erdos458.erdos458_iff' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:43:0: 'Erdos458.log_sub_log_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:44:0: 'Erdos458.log_sub_log_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:44:0: 'Erdos458.gapFactor_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:45:0: 'Erdos458.gapFactor_eq_prod' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:45:0: 'Erdos458.contributor_lt' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:46:0: 'Erdos458.contributor_lt' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:46:0: 'Erdos458.erdos458_of_card_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:47:0: 'Erdos458.erdos458_of_card_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:47:0: 'Erdos458.mem_contributors_of_sq' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:48:0: 'Erdos458.mem_contributors_of_sq' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:48:0: 'Erdos458.fails_of_two_prime_squares' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:49:0: 'Erdos458.fails_of_two_prime_squares' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:49:0: 'Erdos458.q_le_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:50:0: 'Erdos458.q_le_two_mul' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:50:0: 'Erdos458.sq_le_pred' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:51:0: 'Erdos458.sq_le_pred' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:51:0: 'Erdos458.cube_lt_of_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:52:0: 'Erdos458.cube_lt_of_sq_le' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:52:0: 'Erdos458.erdos458_of_card_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:53:0: 'Erdos458.erdos458_of_card_le_two' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:53:0: 'Erdos458.erdos458_iff_no_two_prime_squares' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:54:0: 'Erdos458.erdos458_iff_no_two_prime_squares' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:54:0: 'Erdos458.contributors_eq_filter' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:55:0: 'Erdos458.contributors_eq_filter' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:55:0: 'Erdos458.consecutive_nth' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:56:0: 'Erdos458.consecutive_nth' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:56:0: 'Erdos458.erdos458_iff_gapFactor' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:57:0: 'Erdos458.erdos458_iff_gapFactor' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:57:0: 'Erdos458.erdos458_iff_prod_contributors' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:58:0: 'Erdos458.erdos458_iff_prod_contributors' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:58:0: 'Erdos458.gapFactor_7_11' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:59:0: 'Erdos458.gapFactor_7_11' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:59:0: 'Erdos458.gapFactor_23_29' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:60:0: 'Erdos458.gapFactor_23_29' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:60:0: 'Erdos458.gapFactor_113_127' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:61:0: 'Erdos458.gapFactor_113_127' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:61:0: 'Erdos458.gapFactor_2179_2203' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:62:0: 'Erdos458.gapFactor_2179_2203' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:62:0: 'Erdos458.gapFactor_32749_32771' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:63:0: 'Erdos458.gapFactor_32749_32771' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:63:0: 'Erdos458.sq_gap_gt_of_two_squares' depends on axioms: [propext, Quot.sound]",
+   "Erdos/Audit.lean:64:0: 'Erdos458.sq_gap_gt_of_two_squares' depends on axioms: [propext, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:64:0: 'Erdos458.erdos458_of_gap_bound' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:65:0: 'Erdos458.erdos458_of_gap_bound' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"},
   {"message":
-   "Erdos/Audit.lean:65:0: 'Erdos458.erdos458_at_exceptional_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "Erdos/Audit.lean:66:0: 'Erdos458.erdos458_at_exceptional_gaps' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:70:0: 'Erdos307.prd_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:71:0: 'Erdos307.prd_pos' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:72:0: 'Erdos307.recipSum_eq' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:73:0: 'Erdos307.coprime_D_prd' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:74:0: 'Erdos307.two_cycle_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:75:0: 'Erdos307.solution_of_two_cycle' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:76:0: 'Erdos307.statement_iff_twoCycle' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:77:0: 'Erdos307.disjoint_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:78:0: 'Erdos307.nonempty_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:79:0: 'Erdos307.prd_union' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:80:0: 'Erdos307.D_union' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:81:0: 'Erdos307.sq_add_sq_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:82:0: 'Erdos307.two_squares_of_solution' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:83:0: 'Erdos307.two_le_recipSum_add' depends on axioms: [propext, Classical.choice, Quot.sound]",
+   "level": "info"},
+  {"message":
+   "Erdos/Audit.lean:84:0: 'Erdos307.two_le_recipSum_union' depends on axioms: [propext, Classical.choice, Quot.sound]",
    "level": "info"}],
  "inputs":
  [["Erdos.Audit:deps",
@@ -156,7 +201,9 @@
         ["Erdos.Erdos727 transitive imports (legacy)", "a7c3d2df7ba4971a"],
         ["Erdos.Erdos727:importAllArts", "49c58c1916a9fa3f"],
         ["Erdos.Erdos458 transitive imports (legacy)", "ce62aa4b4848c2d4"],
-        ["Erdos.Erdos458:importAllArts", "44a4b24a4c475516"]]]]],
+        ["Erdos.Erdos458:importAllArts", "44a4b24a4c475516"],
+        ["Erdos.Erdos307 transitive imports (legacy)", "df572cf5759db813"],
+        ["Erdos.Erdos307:importAllArts", "f35c3233a507fbb7"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -165,7 +212,7 @@
   ["Lean 4.31.0, commit 68218e876d2a38b1985b8590fff244a83c321783",
    "fc45ac412f28501c"],
   ["/home/jeannaude/Documents/erdosproblems/lean/Erdos/Audit.lean",
-   "20ceef44711e8669"],
+   "0cefa38289e0fd5d"],
   ["options",
    [["-DmaxSynthPendingDepth=3", "c78e353d34de85d4"],
     ["-Dweak.linter.mathlibStandardSet=false", "28605bbdbbe35f32"],
@@ -175,4 +222,4 @@
   ["Module.name: Erdos.Audit", "418d5ae0bfac2fe2"],
   ["Package.id?: (some erdos)", "4e8d1e6363f83ee8"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "991d4ba27730f392"}
+ "depHash": "ee733aec19d743de"}

@@ -29,4 +29,5 @@ import Erdos.Erdos548
 import Erdos.Erdos632
 import Erdos.Erdos727
 import Erdos.Erdos458
+import Erdos.Erdos307
 import Erdos.Audit

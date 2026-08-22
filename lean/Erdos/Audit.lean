@@ -7,6 +7,7 @@ import Erdos.Erdos389
 import Erdos.Erdos396
 import Erdos.Erdos727
 import Erdos.Erdos458
+import Erdos.Erdos307
 
 namespace Erdos
 
@@ -63,5 +64,23 @@ namespace Erdos
 #print axioms Erdos458.sq_gap_gt_of_two_squares
 #print axioms Erdos458.erdos458_of_gap_bound
 #print axioms Erdos458.erdos458_at_exceptional_gaps
+
+
+-- Erdős 307 (added 2026-08-21)
+#print axioms Erdos307.prd_ne_zero
+#print axioms Erdos307.prd_pos
+#print axioms Erdos307.recipSum_eq
+#print axioms Erdos307.coprime_D_prd
+#print axioms Erdos307.two_cycle_of_solution
+#print axioms Erdos307.solution_of_two_cycle
+#print axioms Erdos307.statement_iff_twoCycle
+#print axioms Erdos307.disjoint_of_solution
+#print axioms Erdos307.nonempty_of_solution
+#print axioms Erdos307.prd_union
+#print axioms Erdos307.D_union
+#print axioms Erdos307.sq_add_sq_of_solution
+#print axioms Erdos307.two_squares_of_solution
+#print axioms Erdos307.two_le_recipSum_add
+#print axioms Erdos307.two_le_recipSum_union
 
 end Erdos
